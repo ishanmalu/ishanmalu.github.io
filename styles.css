@@ -216,3 +216,12 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 /* drop real logo files in and they replace the wordmark, no other changes */
 .clients img{max-width:100%;max-height:26px;filter:grayscale(1);opacity:.85}
 @media (prefers-color-scheme: dark){ .clients img{filter:grayscale(1) invert(1)} }
+
+/* On narrow screens the card header wraps; keep the date with the title
+   instead of letting margin-left:auto strand it on its own line. */
+@media (max-width:720px){
+  .item-head{gap:4px 10px}
+  .when,.src{margin-left:0}
+  .item-head h3{width:100%}
+  .item-head .src{width:auto}
+}
