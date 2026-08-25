@@ -221,7 +221,5 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 /* wrapped headers: keep the date under the title, not right-aligned alone */
 @media (max-width:720px){
   .item-head{gap:4px 10px}
-  .when,.src{margin-left:0}
-  .item-head h3{width:100%}
-  .item-head .src{width:auto}
+  .when{width:100%;margin-left:0;order:1}
 }
