@@ -1,0 +1,29 @@
+name: Refresh contribution graph
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"   # Mondays, 05:17 UTC
+  workflow_dispatch:        # and on demand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate graph.svg
+        run: python3 update-graph.py ishanmalu 6
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- graph.svg; then
+            echo "No change — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh contribution graph" -- graph.svg
+          git push

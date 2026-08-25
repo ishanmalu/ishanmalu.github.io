@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ishan Malu</title>
+<meta name="description" content="Ishan Malu — engineer and founder of Tapli. Code, CV, marketing work.">
+<meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Ishan Malu">
+<meta property="og:description" content="Engineer and founder of Tapli. Code, CV, marketing work.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='25' x='2' font-size='24' font-family='monospace'>im</text></svg>">
+<link rel="stylesheet" href="styles.css">
+<noscript><style>html,body{height:auto;overflow:visible}.wrap{height:auto}.pane{height:auto;overflow:visible}.view[hidden]{display:block !important}.view+.view{margin-top:48px}.langs{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <span class="blob b4"></span>
+</div>
+
+<div class="wrap">
+
+  <header class="rail">
+    <h1 class="name">Ishan<br>Malu</h1>
+    <p class="tag"><span data-t="role">Engineer &amp; Founder</span><br>Helsinki &middot; Vantaa &middot; Turku</p>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#code"      data-pane="code"      data-t="nav.code">Code</a>
+      <a href="#about"     data-pane="about"     data-t="nav.about">About</a>
+      <a href="#cv"        data-pane="cv"        data-t="nav.cv">CV</a>
+      <a href="#marketing" data-pane="marketing" data-t="nav.marketing">Marketing</a>
+      <a href="#company"   data-pane="company"   data-t="nav.company">Company</a>
+    </nav>
+
+    <nav class="ext" aria-label="Elsewhere">
+      <a href="https://github.com/ishanmalu" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a href="https://www.linkedin.com/in/ishanmalu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    </nav>
+
+    <div class="langs">
+      <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+      <span aria-hidden="true">/</span>
+      <button type="button" data-lang="fi" lang="fi" aria-label="Suomi" aria-pressed="false">FI</button>
+    </div>
+  </header>
+
+  <main class="pane">
+
+    <!-- ===== CODE ===== -->
+    <section id="code" class="view" aria-labelledby="h-code">
+      <h2 id="h-code" data-t="nav.code">Code</h2>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>Tapli</h3>
+          <a class="src" href="https://tapliapp.com" target="_blank" rel="noopener">tapliapp.com &#8599;</a>
+        </div>
+        <p data-t="code.tapli.1">QR ordering for restaurants, live in Finland with real orders going through it daily. A guest scans the code at the table, orders and pays on their phone, and the ticket hits the kitchen display instantly &mdash; no app to download, no staff needed at the table.</p>
+        <p data-t="code.tapli.2">I build and ship it myself, AI-assisted: restaurant dashboard, customer menu, table-side ordering, and kitchen display. TypeScript and React on Supabase and Cloudflare, with Stripe Connect Express so restaurants are paid directly and VAT receipts and refunds are handled automatically.</p>
+        <p data-t="code.tapli.3">The interesting problems are on the import side: point AI at a website URL, a PDF, or a photo of a paper menu and it extracts every dish, price, and category in seconds, then tags all 14 EU allergens and translates the whole thing into 20+ languages in one click.</p>
+        <p class="tags"><span>TypeScript</span><span>React</span><span>Supabase</span><span>Cloudflare</span><span>Stripe Connect</span><span>SaaS</span><span class="muted" data-t="tag.private">private repo</span></p>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>Perch</h3>
+          <a class="src" href="https://github.com/ishanmalu/perch" target="_blank" rel="noopener">source &#8599;</a>
+        </div>
+        <p data-t="code.perch.1">A native macOS menu bar utility bundling window tiling, an Alt-Tab window switcher, clipboard history, system monitoring, disk and screen cleaning, and per-display brightness &mdash; the things I kept installing six separate apps for.</p>
+        <p data-t="code.perch.2">Written in Swift and built without Xcode: SwiftPM, <code>lipo</code> for a universal binary, and self-tests that live inside the shipped binary. Signed, open source, with a documentation site.</p>
+        <p class="tags"><span>Swift</span><span>SwiftUI</span><span>SwiftPM</span><span>macOS</span><span>MIT</span></p>
+      </article>
+
+      <div class="graph">
+        <p class="graph-label" data-t="graph.label">Contributions, last 6 months</p>
+        <img src="graph.svg" width="375" height="95" data-alt="graph.alt" alt="GitHub contribution graph for ishanmalu" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="view" hidden aria-labelledby="h-about">
+      <h2 id="h-about" data-t="nav.about">About</h2>
+      <p data-t="about.1">I'm Ishan &mdash; I build software and I sell it. Right now that means Tapli, a SaaS product for QR ordering in Finnish restaurants that I founded and run day to day.</p>
+      <p data-t="about.2">My route in wasn't the usual one. I spent three years making short-form content and running social for brands, did a year in the Finnish Defence Forces finishing as a Sergeant, and sold face to face at one of Finland's largest field sales agencies. That's what the engineering sits on top of: I still onboard most Tapli accounts myself, which is where the roadmap comes from.</p>
+      <p data-t="about.3">Currently studying Information and Communication Technology at Turku University of Applied Sciences. Based between Helsinki, Vantaa, and Turku.</p>
+      <p class="tags"><span>TypeScript</span><span>React</span><span>SQL</span><span>Python</span><span>Swift</span><span>HTML/CSS</span><span>Node.js</span></p>
+      <p class="tags"><span data-t="lang.en">English &mdash; fluent</span><span data-t="lang.fi">Finnish &mdash; professional</span><span data-t="lang.hi">Hindi &mdash; native</span><span data-t="lang.mwr">Marwari &mdash; native</span><span data-t="lang.sv">Swedish &mdash; basic</span></p>
+    </section>
+
+    <!-- ===== CV ===== -->
+    <section id="cv" class="view" hidden aria-labelledby="h-cv">
+      <h2 id="h-cv" data-t="nav.cv">CV</h2>
+      <p class="cv-dl">
+        <a class="src src-inline" href="Ishan_Malu_CV_EN.pdf" target="_blank" rel="noopener">Download CV &mdash; English &#8599;</a>
+        <a class="src src-inline" href="Ishan_Malu_CV_FI.pdf" target="_blank" rel="noopener">Lataa CV &mdash; suomeksi &#8599;</a>
+      </p>
+
+      <h4 data-t="cv.experience">Experience</h4>
+
+      <article class="item">
+        <div class="item-head"><h3>Founder &amp; CEO &mdash; Tapli</h3><span class="when">May 2026 &ndash; <span data-t="now">now</span></span></div>
+        <p data-t="cv.tapli">Founded and run a QR ordering and digital menu platform, live in Finnish restaurants. I own sales, pricing, marketing, and product direction &mdash; and build and ship the product itself in TypeScript and React on Supabase and Cloudflare.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Head of Marketing &amp; Social Media &mdash; AddNow</h3><span class="when">Nov 2025 &ndash; <span data-t="now">now</span></span></div>
+        <p data-t="cv.addnow">Leading marketing and content for an AI-powered contact management app. TikTok and Reels scripting, carousels, content calendars, and creative direction.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Event &amp; Customer Engagement &mdash; Helena Riihitupa Oy</h3><span class="when">Sep 2025 &ndash; <span data-t="now">now</span></span></div>
+        <p data-t="cv.helena">On-site customer engagement and event work across Helsinki, representing brands directly to consumers.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Sales Advisor &mdash; Clas Ohlson</h3><span class="when">Oct 2025 &ndash; Jul 2026</span></div>
+        <p data-t="cv.clas">Shop floor, merchandising, and order fulfilment at Finland's only Clas Ohlson e-commerce warehouse. Club Clas Ambassador, tracking and growing loyalty sign-ups.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3><span data-t="freelance">Freelance</span> &mdash; Social Media &amp; Video Editing</h3><span class="when">Aug 2023 &ndash; Jun 2026</span></div>
+        <p data-t="cv.freelance">Delivered short-form content end to end for brands &mdash; scripting, filming, editing, and performance analysis &mdash; across TikTok, Instagram Reels, YouTube Shorts, and LinkedIn, plus podcast editing and full production.</p>
+        <p data-t="cv.freelance.clients">Clients included Moov Kids, Birkkalan Tila, Euro Scalers, The F-Company, Studio Manu, and Ome Energy by Hartwall.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Sergeant &mdash; <span data-t="fdf">Finnish Defence Forces</span></h3><span class="when">Jul 2024 &ndash; Jun 2025</span></div>
+        <p data-t="cv.fdf">One year of national service at Upinniemi Naval Base. NCO course, then office area officer responsible for unit documentation and administration.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Social Media Marketer &mdash; Euro Scalers</h3><span class="when">Aug 2023 &ndash; Dec 2023</span></div>
+        <p data-t="cv.euro">Short-form video and social marketing. CapCut, Premiere Pro, Photoshop, Illustrator, Canva.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Sales Consultant &mdash; Nordic Sales Crew Oy</h3><span class="when">May 2022 &ndash; Sep 2022</span></div>
+        <p data-t="cv.nordic">Face-to-face sales at one of Finland's largest field sales agencies. Objection handling and customer-facing communication.</p>
+      </article>
+
+      <h4 data-t="cv.education">Education</h4>
+
+      <article class="item">
+        <div class="item-head"><h3 data-t="edu.turku.h">BEng, Information &amp; Communication Technology</h3><span class="when">2026 &ndash; <span data-t="now">now</span></span></div>
+        <p>Turku University of Applied Sciences</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3 data-t="edu.tampere.h">Software Engineering, Open University route (20 ECTS)</h3><span class="when">2025 &ndash; 2026</span></div>
+        <p data-t="edu.tampere.p">Tampere University</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3 data-t="edu.hs.h">Finnish Matriculation Examination</h3><span class="when">2020 &ndash; 2023</span></div>
+        <p data-t="edu.hs.p">Vuosaari High School &mdash; coursework in Python and HTML</p>
+      </article>
+
+      <h4 data-t="cv.skills">Skills</h4>
+      <article class="item">
+        <div class="item-head"><h3 data-t="sk.build.h">Building</h3></div>
+        <p data-t="sk.build.p">TypeScript, React, HTML/CSS and SQL day to day; Python for scripting and data work; some Swift.</p>
+      </article>
+      <article class="item">
+        <div class="item-head"><h3 data-t="sk.ai.h">AI-assisted development</h3></div>
+        <p data-t="sk.ai.p">I work primarily with AI coding tools to design, build, and ship production features &mdash; and to review my own work.</p>
+      </article>
+      <article class="item">
+        <div class="item-head"><h3 data-t="sk.plat.h">Platforms &amp; tools</h3></div>
+        <p data-t="sk.plat.p">Supabase (PostgreSQL), Cloudflare Pages, Vercel, Stripe Connect, Git and GitHub, Node.js, PostHog analytics.</p>
+      </article>
+      <article class="item">
+        <div class="item-head"><h3 data-t="sk.biz.h">Business &amp; creative</h3></div>
+        <p data-t="sk.biz.p">B2B SaaS sales and onboarding, pricing, growth marketing, short-form content, Premiere Pro, Photoshop, Illustrator, Canva.</p>
+      </article>
+
+      <h4 data-t="cv.certs">Certifications</h4>
+      <article class="item">
+        <div class="item-head"><h3>Claude Code in Action &mdash; Anthropic</h3><span class="when">2026</span></div>
+      </article>
+      <article class="item">
+        <div class="item-head"><h3>Claude Code 101 &mdash; Anthropic</h3><span class="when">2026</span></div>
+      </article>
+      <article class="item">
+        <div class="item-head"><h3>Google Ads Measurement &mdash; Google</h3><span class="when">2024</span></div>
+      </article>
+    </section>
+
+    <!-- ===== MARKETING ===== -->
+    <section id="marketing" class="view" hidden aria-labelledby="h-marketing">
+      <h2 id="h-marketing" data-t="nav.marketing">Marketing</h2>
+      <p data-t="mk.intro">Three years of short-form content and social before I started building products &mdash; scripting, filming, editing, and reading the numbers afterwards.</p>
+
+      <article class="item">
+        <div class="item-head"><h3>AddNow</h3><span class="when">2025 &ndash; <span data-t="now">now</span></span></div>
+        <p data-t="mk.addnow">Head of marketing for an AI contact management app. Turning product features into content people actually watch: short-form hooks, build-in-public videos, educational posts that drive downloads.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3 data-t="mk.free.h">Freelance &mdash; Social Media &amp; Video Editing</h3><span class="when">2023 &ndash; 2026</span></div>
+        <p data-t="mk.free.p1">Three years running the whole pipeline for brands: scripting, filming, editing, and reading the numbers afterwards. Short-form for TikTok, Instagram Reels, YouTube Shorts, and LinkedIn, plus podcast editing and end-to-end production.</p>
+        <p data-t="mk.free.p2">Across food, drink, energy, agriculture, and startups &mdash; six clients whose audiences had almost nothing in common, which is the part that taught me the most.</p>
+        <p class="clients-label" data-t="mk.clients">Edited for</p>
+        <ul class="clients">
+          <li><a href="https://www.moovkids.fi/" target="_blank" rel="noopener">Moov Kids</a></li>
+          <li><a href="https://www.birkkala.com/" target="_blank" rel="noopener">Birkkalan Tila</a></li>
+          <li><a href="https://www.linkedin.com/company/euro-scalers/" target="_blank" rel="noopener">Euro Scalers</a></li>
+          <li><a href="https://www.instagram.com/thefcompanyhq/" target="_blank" rel="noopener">The F-Company</a></li>
+          <li><a href="https://www.instagram.com/studiomanucreative/" target="_blank" rel="noopener">Studio Manu</a></li>
+          <li><a href="https://www.omedrinks.com/" target="_blank" rel="noopener">Ome Energy <span class="by">by Hartwall</span></a></li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Elisa Esports &mdash; Masters Espoo 2022</h3><span class="when">2022</span></div>
+        <p data-t="mk.elisa">Ran international and regional social (Twitter, Instagram, Twitch) live during the tournament.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>India Day Finland</h3><span class="when">2026</span></div>
+        <p data-t="mk.india">Filmed and edited event content, including interviews with the Indian Ambassador to Finland and Finland's Director of Immigration Affairs. Social designs and website edits.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3 data-t="mk.slush.h">Slush &mdash; media area</h3><span class="when">2023, 2025</span></div>
+        <p data-t="mk.slush.p">Supported podcast crews, creators, and guests in the media area; coordinated interview sessions. Earlier, badge print production across a high-volume two-day workflow.</p>
+      </article>
+
+      <article class="item">
+        <div class="item-head"><h3>Helsinki Coffee Festival</h3><span class="when">2024 &ndash; <span data-t="now">now</span></span></div>
+        <p data-t="mk.coffee">Photo and video for social at the Coffee Festival and the Ice Cream &amp; Chocolate Carnival.</p>
+      </article>
+    </section>
+
+    <!-- ===== COMPANY ===== -->
+    <section id="company" class="view" hidden aria-labelledby="h-company">
+      <h2 id="h-company" data-t="nav.company">Company</h2>
+
+      <article class="item">
+        <div class="item-head">
+          <h3>Tapli</h3>
+          <a class="src" href="https://tapliapp.com" target="_blank" rel="noopener">tapliapp.com &#8599;</a>
+        </div>
+        <p data-t="co.1">A SaaS product for QR ordering in restaurants, live in Finland with real orders going through it every day. Most restaurants are up and running in under 30 minutes.</p>
+        <p data-t="co.2">A guest scans a sticker or a coaster at the table, or picks their table off the floor plan. They order and pay on their phone &mdash; Apple Pay, Google Pay, MobilePay, or card &mdash; and it lands on the kitchen display instantly, routed to the right station. No app, and no waiting around to catch someone's eye.</p>
+        <p data-t="co.3">Setup is the part restaurants expect to hate. Paste your website URL, upload a PDF, or photograph your paper menu, and AI extracts every item, price, and category in seconds. You review it before anything saves. All 14 EU allergens get tagged, customers filter in real time, and one click translates the whole menu into 20+ languages.</p>
+        <p data-t="co.4">Past the menu itself: daily specials that auto-expire, live order tracking, scan and search analytics exportable as CSV, brand styling with live preview, and AI-drafted replies to Google reviews. It also runs for food trucks, festival stalls, and hotels &mdash; room service, bar, and spa through one QR code.</p>
+        <p data-t="co.5">I started Tapli and run it day to day. Sales, marketing, growth, pricing, and deciding with our CTO what we build and what we leave alone. Restaurants will ask you for everything, and most of the job is working out which of it actually moves the business. I still sell and onboard most accounts myself, which is where the roadmap comes from.</p>
+        <p class="tags"><span>SaaS</span><span data-t="tag.trial">14 days free</span><span>Tapli Oy</span><span>GDPR &middot; EU</span></p>
+      </article>
+    </section>
+
+  </main>
+</div>
+
+<script src="lang.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
