@@ -1,4 +1,3 @@
-// ---- panes ----------------------------------------------------------------
 const panes = [...document.querySelectorAll('.view')];
 const links = [...document.querySelectorAll('.nav a')];
 
@@ -16,8 +15,7 @@ function show(id) {
 show(location.hash.slice(1));
 addEventListener('hashchange', () => show(location.hash.slice(1)));
 
-// ---- language -------------------------------------------------------------
-// English is the source of truth in the HTML; cache it once, then swap.
+// EN lives in the markup, so cache it before the first swap.
 const nodes = [...document.querySelectorAll('[data-t]')];
 const EN = new Map(nodes.map(n => [n, n.innerHTML]));
 const alts = [...document.querySelectorAll('[data-alt]')];

@@ -2,8 +2,8 @@ name: Refresh contribution graph
 
 on:
   schedule:
-    - cron: "17 5 * * 1"   # Mondays, 05:17 UTC
-  workflow_dispatch:        # and on demand from the Actions tab
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ jobs:
       - name: Commit if it changed
         run: |
           if git diff --quiet -- graph.svg; then
-            echo "No change — nothing to commit."
+            echo "unchanged"
             exit 0
           fi
           git config user.name  "github-actions[bot]"

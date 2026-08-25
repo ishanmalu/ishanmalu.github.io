@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-"""Fetch the GitHub contribution graph and write it out as a static graph.svg.
-
-No API key: GitHub serves this publicly. Re-run whenever you want the graph
-refreshed (or wire it to a cron / GitHub Action).
+"""Write graph.svg from a GitHub profile's contribution calendar.
 
     python3 update-graph.py [username] [months]
 
-Defaults to the last 6 months. Pass 12 for the full year.
+Defaults to 6 months. No API key needed.
 """
 import datetime as dt
 import re
@@ -17,8 +14,7 @@ USER = sys.argv[1] if len(sys.argv) > 1 else "ishanmalu"
 MONTHS = int(sys.argv[2]) if len(sys.argv) > 2 else 6
 CELL, GAP = 11, 3  # px
 
-# GitHub's own range params, so this is a real 6-month window rather than a
-# crop of the year. The range can span two calendar years, so ask for both.
+# range params, so this is a real window and not a crop
 today = dt.date.today()
 start = today - dt.timedelta(days=round(MONTHS * 30.44))
 url = (f"https://github.com/users/{USER}/contributions"
@@ -39,7 +35,7 @@ days = sorted(d for d in days if start <= d[0] <= today)
 if not days:
     sys.exit(f"no contributions in the last {MONTHS} months for {USER}")
 first = days[0][0]
-origin = first - dt.timedelta(days=(first.weekday() + 1) % 7)  # back to Sunday
+origin = first - dt.timedelta(days=(first.weekday() + 1) % 7)  # nearest Sunday
 
 cells = []
 for date, level in days:

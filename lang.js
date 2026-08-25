@@ -1,5 +1,4 @@
-// Finnish strings only. English lives in index.html and is cached on load,
-// so there is exactly one copy of each language and no risk of them drifting.
+// FI only. EN is read straight out of index.html.
 window.FI = {
   "role": "Insinööri &amp; Perustaja",
   "now": "nyt",

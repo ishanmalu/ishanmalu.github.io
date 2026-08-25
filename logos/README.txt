@@ -1,3 +1,2 @@
-Drop client logo files here as SVG or PNG, then swap the <li> text for
-<img src="logos/name.svg" alt="Company name"> in index.html. They are
-desaturated and inverted for dark mode automatically.
+Client logos go here (SVG or PNG). Replace the <li> text in index.html with
+an <img src="logos/name.svg" alt="Name">; the CSS handles greyscale + dark mode.
