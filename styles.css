@@ -122,7 +122,7 @@ body{
 .item{
   background:var(--card);
   border:1px solid var(--line);border-radius:13px;
-  padding:14px 16px;margin:0 0 10px;
+  padding:13px 15px;margin:0 0 10px;
   backdrop-filter:blur(22px) saturate(165%);
   -webkit-backdrop-filter:blur(22px) saturate(165%);
   box-shadow:inset 0 1px 0 var(--edge), var(--shadow);
@@ -132,7 +132,7 @@ body{
 .item-head{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap;margin-bottom:6px}
 .item-head h3{flex:1 1 auto;min-width:0}
 .item h3{font:600 16px/1.3 ui-sans-serif,-apple-system,sans-serif;margin:0}
-.item p{font-size:14px;line-height:1.46;color:var(--dim);margin:0 0 7px}
+.item p{font-size:13.8px;line-height:1.45;color:var(--dim);margin:0 0 7px}
 .item p:last-child{margin-bottom:0}
 .when{margin-left:auto;flex:0 0 auto;white-space:nowrap;color:var(--dim);font:400 13px/1 ui-monospace,monospace}
 .src{
@@ -151,12 +151,12 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .tags .muted{opacity:.65;font-style:italic}
 
 /* contribution graph */
-.graph{margin-top:13px;padding-bottom:0}
+.graph{margin-top:8px;padding-bottom:0}
 .graph-label{
   font:400 11.5px/1 ui-monospace,monospace;letter-spacing:.08em;
   text-transform:uppercase;color:var(--dim);margin:0 0 7px;
 }
-.graph img{width:100%;max-width:none;height:auto;display:block;border-radius:6px}
+.graph img{width:100%;max-width:395px;height:auto;display:block;border-radius:6px}
 
 /* mobile */
 @media (max-width:720px){
@@ -248,7 +248,7 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .shots figure{margin:0}
 .shots a{display:block}
 .shots img{
-  width:100%;height:96px;object-fit:cover;object-position:50% 26%;
+  width:100%;height:70px;object-fit:cover;object-position:50% 26%;
   display:block;
   border:1px solid var(--line);border-radius:8px;
   background:var(--paper);
@@ -256,7 +256,7 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 }
 .shots a:hover img{border-color:var(--ink)}
 .shots figcaption{
-  font:400 10px/1 ui-monospace,monospace;letter-spacing:.08em;
+  font:400 9.5px/1 ui-monospace,monospace;letter-spacing:.08em;
   text-transform:uppercase;color:var(--dim);margin-top:5px;text-align:center;
 }
 /* one image per theme. img.sX matches .shots img / .graph img specificity
@@ -297,8 +297,8 @@ img.s-dark{display:none}
 
 /* CV is the longest section: two columns so it lands in one screen */
 @media (min-width:721px){
-  #cv:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 26px;align-content:start;align-items:start}
-  #cv h2,#cv h4,#cv .cv-dl{grid-column:1 / -1}
+  #cv:not([hidden]){display:block;columns:2;column-gap:26px}
+  #cv h2,#cv h4,#cv .cv-dl,#cv .skills-card{column-span:all}
   #cv h4{margin:11px 0 5px}
   #cv .item{margin-bottom:5px}
   /* the PDF carries the detail; on screen this is an index */
@@ -310,14 +310,16 @@ img.s-dark{display:none}
 }
 
 @media (min-width:721px){
-  #marketing:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 14px;align-content:start;align-items:start}
-  #marketing h2,#marketing>p,#marketing .item:nth-of-type(2){grid-column:1 / -1}
+  #marketing:not([hidden]){display:block}
+  #marketing .flow{columns:2;column-gap:14px}
+  #marketing .flow>.item{break-inside:avoid;margin-bottom:10px}
+  #marketing .item-head{flex-wrap:nowrap}
   #marketing .item{margin-bottom:6px;padding:10px 13px}
   #marketing .item p{font-size:13px;line-height:1.4;margin-bottom:5px}
 }
 
 @media (min-width:721px) and (max-height:820px){
-  .shots img{height:78px}
+  .shots img{height:66px}
   .graph{margin-top:8px}
   #cv .item{margin-bottom:4px;padding:7px 11px}
   #cv h4{margin:9px 0 4px}
@@ -328,7 +330,7 @@ img.s-dark{display:none}
   .clients a{min-height:34px}
 }
 
-.skills-card{grid-column:1 / -1}
+.skills-card{break-inside:avoid}
 .skills-card p{font-size:13px;line-height:1.5;margin-bottom:4px !important}
 .skills-card p:last-child{margin-bottom:0 !important}
 .skills-card p span:first-child{color:var(--ink);font-weight:600}
@@ -345,7 +347,7 @@ img.s-dark{display:none}
 
 /* CV: rows, not cards. One line each, hairline between. */
 @media (min-width:721px){
-  #cv .item:not(.skills-card){
+  #cv .item:not(.skills-card){break-inside:avoid;
     background:none;border:0;border-radius:0;box-shadow:none;
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border-bottom:1px solid var(--line);
