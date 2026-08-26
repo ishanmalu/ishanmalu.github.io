@@ -5,7 +5,9 @@
   --line:#e2e2de;
   --acc:#141413;
   --paper:#f6f6f4;
-  --card:rgba(255,255,255,.62);
+  --card:rgba(255,255,255,.5);
+  --edge:rgba(255,255,255,.75);
+  --shadow:0 1px 2px rgba(0,0,0,.035), 0 10px 28px rgba(0,0,0,.055);
   --g1:#d9d9d6; --g2:#e4e0da; --g3:#d3d6d9; --g4:#e0dadc;
   --blob-alpha:.6;
 }
@@ -13,7 +15,9 @@
   :root:not([data-theme="light"]){
     --ink:#ececea; --dim:#8d8d89; --line:#2a2a28;
     --acc:#ececea; --paper:#0d0d0c;
-    --card:rgba(23,23,22,.6);
+    --card:rgba(30,30,29,.44);
+    --edge:rgba(255,255,255,.07);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
     --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
     --blob-alpha:.85;
   }
@@ -21,7 +25,9 @@
 :root[data-theme="dark"]{
     --ink:#ececea; --dim:#8d8d89; --line:#2a2a28;
     --acc:#ececea; --paper:#0d0d0c;
-    --card:rgba(23,23,22,.6);
+    --card:rgba(30,30,29,.44);
+    --edge:rgba(255,255,255,.07);
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
     --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
     --blob-alpha:.85;
 }
@@ -115,15 +121,20 @@ body{
 
 .item{
   background:var(--card);
-  border:1px solid var(--line);border-radius:10px;
+  border:1px solid var(--line);border-radius:13px;
   padding:14px 16px;margin:0 0 10px;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(22px) saturate(165%);
+  -webkit-backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:inset 0 1px 0 var(--edge), var(--shadow);
+  transition:transform .18s ease, box-shadow .18s ease;
 }
-.item-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.item:hover{box-shadow:inset 0 1px 0 var(--edge), 0 2px 4px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.09)}
+.item-head{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap;margin-bottom:6px}
+.item-head h3{flex:1 1 auto;min-width:0}
 .item h3{font:600 16px/1.3 ui-sans-serif,-apple-system,sans-serif;margin:0}
-.item p{font-size:14px;line-height:1.48;color:var(--dim);margin:0 0 8px}
+.item p{font-size:14px;line-height:1.46;color:var(--dim);margin:0 0 7px}
 .item p:last-child{margin-bottom:0}
-.when{margin-left:auto;color:var(--dim);font:400 13px/1 ui-monospace,monospace}
+.when{margin-left:auto;flex:0 0 auto;white-space:nowrap;color:var(--dim);font:400 13px/1 ui-monospace,monospace}
 .src{
   margin-left:auto;color:var(--ink);text-decoration:none;
   font:400 13px/1 ui-monospace,monospace;border-bottom:1px solid var(--line);
@@ -140,12 +151,12 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .tags .muted{opacity:.65;font-style:italic}
 
 /* contribution graph */
-.graph{margin-top:16px;padding-bottom:2px}
+.graph{margin-top:13px;padding-bottom:0}
 .graph-label{
   font:400 11.5px/1 ui-monospace,monospace;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--dim);margin:0 0 8px;
+  text-transform:uppercase;color:var(--dim);margin:0 0 7px;
 }
-.graph img{width:100%;max-width:370px;height:auto;display:block;border-radius:6px}
+.graph img{width:100%;max-width:none;height:auto;display:block;border-radius:6px}
 
 /* mobile */
 @media (max-width:720px){
@@ -196,7 +207,6 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .item p{margin-bottom:7px}
   .view h2{margin-bottom:11px}
   .graph{margin-top:9px}
-  .graph img{max-width:300px}
   .item p{font-size:14px;line-height:1.48}
 }
 
@@ -234,11 +244,11 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 }
 
 /* screenshots: one per theme, so the shot matches the page */
-.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:9px}
 .shots figure{margin:0}
 .shots a{display:block}
 .shots img{
-  width:100%;height:86px;object-fit:cover;object-position:top;
+  width:100%;height:96px;object-fit:cover;object-position:50% 26%;
   display:block;
   border:1px solid var(--line);border-radius:8px;
   background:var(--paper);
@@ -246,18 +256,20 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 }
 .shots a:hover img{border-color:var(--ink)}
 .shots figcaption{
-  font:400 10.5px/1 ui-monospace,monospace;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--dim);margin-top:6px;text-align:center;
+  font:400 10px/1 ui-monospace,monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--dim);margin-top:5px;text-align:center;
 }
-.s-dark{display:none}
+/* one image per theme. img.sX matches .shots img / .graph img specificity
+   and comes later, so it wins; the theme rules outrank both. */
+img.s-dark{display:none}
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .s-light{display:none}
-  :root:not([data-theme="light"]) .s-dark{display:block}
+  :root:not([data-theme="light"]) img.s-light{display:none}
+  :root:not([data-theme="light"]) img.s-dark{display:block}
 }
-:root[data-theme="dark"] .s-light{display:none}
-:root[data-theme="dark"] .s-dark{display:block}
-:root[data-theme="light"] .s-light{display:block}
-:root[data-theme="light"] .s-dark{display:none}
+:root[data-theme="dark"] img.s-light{display:none}
+:root[data-theme="dark"] img.s-dark{display:block}
+:root[data-theme="light"] img.s-light{display:block}
+:root[data-theme="light"] img.s-dark{display:none}
 @media (max-width:720px){
   .shots{grid-template-columns:repeat(3,1fr);gap:7px}
   .shots img{height:112px}
@@ -285,7 +297,7 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 
 /* CV is the longest section: two columns so it lands in one screen */
 @media (min-width:721px){
-  #cv:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 14px;align-content:start}
+  #cv:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 26px;align-content:start;align-items:start}
   #cv h2,#cv h4,#cv .cv-dl{grid-column:1 / -1}
   #cv h4{margin:11px 0 5px}
   #cv .item{margin-bottom:5px}
@@ -298,15 +310,14 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 }
 
 @media (min-width:721px){
-  #marketing:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 14px;align-content:start}
+  #marketing:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 14px;align-content:start;align-items:start}
   #marketing h2,#marketing>p,#marketing .item:nth-of-type(2){grid-column:1 / -1}
   #marketing .item{margin-bottom:6px;padding:10px 13px}
   #marketing .item p{font-size:13px;line-height:1.4;margin-bottom:5px}
 }
 
 @media (min-width:721px) and (max-height:820px){
-  .shots img{height:66px}
-  .graph img{max-width:300px}
+  .shots img{height:78px}
   .graph{margin-top:8px}
   #cv .item{margin-bottom:4px;padding:7px 11px}
   #cv h4{margin:9px 0 4px}
@@ -330,4 +341,17 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   #cv .item h3{font-size:13px}
   #cv .when{font-size:11.5px}
   #cv .cv-dl{margin-bottom:0}
+}
+
+/* CV: rows, not cards. One line each, hairline between. */
+@media (min-width:721px){
+  #cv .item:not(.skills-card){
+    background:none;border:0;border-radius:0;box-shadow:none;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    border-bottom:1px solid var(--line);
+    margin:0;padding:7px 2px;
+  }
+  #cv .item:not(.skills-card):hover{transform:none;box-shadow:none}
+  #cv .item-head{margin-bottom:0;flex-wrap:nowrap;align-items:baseline}
+  #cv .item-head h3{overflow:hidden;text-overflow:ellipsis}
 }

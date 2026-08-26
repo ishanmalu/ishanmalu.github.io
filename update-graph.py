@@ -14,15 +14,21 @@ USER = sys.argv[1] if len(sys.argv) > 1 else "ishanmalu"
 MONTHS = int(sys.argv[2]) if len(sys.argv) > 2 else 6
 CELL, GAP = 11, 3  # px
 
-# range params, so this is a real window and not a crop
+# The endpoint only answers within one calendar year, so a window that
+# straddles New Year needs a request per year, merged.
 today = dt.date.today()
 start = today - dt.timedelta(days=round(MONTHS * 30.44))
-url = (f"https://github.com/users/{USER}/contributions"
-       f"?from={start.isoformat()}&to={today.isoformat()}")
-html = subprocess.run(
-    ["curl", "-sSfL", "--max-time", "30", "-A", "portfolio-graph", url],
-    capture_output=True, text=True, check=True,
-).stdout
+
+html = ""
+for year in range(start.year, today.year + 1):
+    frm = max(start, dt.date(year, 1, 1))
+    to = min(today, dt.date(year, 12, 31))
+    url = (f"https://github.com/users/{USER}/contributions"
+           f"?from={frm.isoformat()}&to={to.isoformat()}")
+    html += subprocess.run(
+        ["curl", "-sSfL", "--max-time", "30", "-A", "portfolio-graph", url],
+        capture_output=True, text=True, check=True,
+    ).stdout
 
 days = [
     (dt.date.fromisoformat(d), int(l))
@@ -31,7 +37,7 @@ days = [
 if not days:
     sys.exit(f"no contribution data found for {USER} — did the page shape change?")
 
-days = sorted(d for d in days if start <= d[0] <= today)
+days = sorted({d: l for d, l in days if start <= d <= today}.items())
 if not days:
     sys.exit(f"no contributions in the last {MONTHS} months for {USER}")
 first = days[0][0]

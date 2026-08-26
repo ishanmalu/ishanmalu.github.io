@@ -15,7 +15,7 @@ window.FI = {
   "shot.system": "Järjestelmä",
   "shot.screen": "Näyttö",
   "graph.alt": "GitHub-kontribuutiokaavio käyttäjälle ishanmalu",
-  "graph.label": "Kontribuutiot, viimeiset 6 kuukautta",
+  "graph.label": "Kontribuutiot, viimeiset 12 kuukautta",
   "tag.private": "yksityinen repo",
   "tag.trial": "14 päivää ilmaiseksi",
 
