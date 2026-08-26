@@ -15,6 +15,28 @@ function show(id) {
 show(location.hash.slice(1));
 addEventListener('hashchange', () => show(location.hash.slice(1)));
 
+// Finnish CVs write dates as 8/2023, not Aug 2023.
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+// Only the text nodes: rewriting .when's innerHTML would detach the
+// nested [data-t] span that holds "now".
+const dateText = [];
+document.querySelectorAll('.when').forEach(n => {
+  n.childNodes.forEach(c => {
+    if (c.nodeType === 3 && /[A-Z][a-z]{2} \d{4}/.test(c.nodeValue)) {
+      dateText.push([c, c.nodeValue]);
+    }
+  });
+});
+
+function localiseDates(fi) {
+  dateText.forEach(([node, en]) => {
+    node.nodeValue = fi
+      ? en.replace(/([A-Z][a-z]{2}) (\d{4})/g,
+          (m, mon, year) => MONTHS.indexOf(mon) < 0 ? m : `${MONTHS.indexOf(mon) + 1}/${year}`)
+      : en;
+  });
+}
+
 // EN lives in the markup, so cache it before the first swap.
 const nodes = [...document.querySelectorAll('[data-t]')];
 const EN = new Map(nodes.map(n => [n, n.innerHTML]));
@@ -32,6 +54,7 @@ function setLang(lang) {
     const t = fi ? window.FI[n.dataset.alt] : ALT.get(n);
     if (t !== undefined) n.alt = t;
   });
+  localiseDates(fi);
   document.documentElement.lang = fi ? 'fi' : 'en';
   buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   try { localStorage.setItem('lang', lang); } catch {}
@@ -39,15 +62,15 @@ function setLang(lang) {
 
 buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
-let saved = null;
-try { saved = localStorage.getItem('lang'); } catch {}
-setLang(saved || (navigator.language.startsWith('fi') ? 'fi' : 'en'));
+let savedLang = null;
+try { savedLang = localStorage.getItem('lang'); } catch {}
+setLang(savedLang || (navigator.language.startsWith('fi') ? 'fi' : 'en'));
 
 // Theme. Follows the OS until the reader picks one, then that sticks.
 const root = document.documentElement;
-let theme = null;
-try { theme = localStorage.getItem('theme'); } catch {}
-if (theme) root.dataset.theme = theme;
+let savedTheme = null;
+try { savedTheme = localStorage.getItem('theme'); } catch {}
+if (savedTheme) root.dataset.theme = savedTheme;
 
 function currentlyDark() {
   return root.dataset.theme
@@ -55,10 +78,18 @@ function currentlyDark() {
     : matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-document.querySelectorAll('[data-theme-toggle]').forEach(b => {
+const themeButtons = [...document.querySelectorAll('[data-theme-toggle]')];
+const markTheme = () =>
+  themeButtons.forEach(b => b.setAttribute('aria-pressed', String(currentlyDark())));
+
+themeButtons.forEach(b => {
   b.addEventListener('click', () => {
     const next = currentlyDark() ? 'light' : 'dark';
     root.dataset.theme = next;
     try { localStorage.setItem('theme', next); } catch {}
+    markTheme();
   });
 });
+
+markTheme();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme);

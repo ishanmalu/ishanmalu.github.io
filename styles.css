@@ -65,7 +65,10 @@ body{
               33%{transform:translate(-14vw,-20vh) scale(1.1)}
               66%{transform:translate(10vw,-8vh) scale(.92)}}
 
-@media (prefers-reduced-motion: reduce){ .blob{animation:none} }
+@media (prefers-reduced-motion: reduce){
+  .blob{animation:none}
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
 
 /* layout */
 .wrap{
@@ -156,7 +159,7 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   font:400 11.5px/1 ui-monospace,monospace;letter-spacing:.08em;
   text-transform:uppercase;color:var(--dim);margin:0 0 7px;
 }
-.graph img{width:100%;max-width:395px;height:auto;display:block;border-radius:6px}
+.graph img{width:100%;max-width:470px;height:auto;display:block;border-radius:6px}
 
 /* mobile */
 @media (max-width:720px){
@@ -189,7 +192,11 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .item p,.when,.view h2,.view h4{color:#333}
   .view{break-before:page}
   .view:first-of-type{break-before:auto}
-  .graph{display:none}
+  .graph,.shots{display:none}
+  #cv .item:not(.skills-card) p{position:static;width:auto;height:auto;
+    margin:0;clip-path:none;white-space:normal;overflow:visible}
+  #cv:not([hidden]),#marketing .flow{columns:1}
+  .clients a{border-color:#ccc}
   a{text-decoration:none;color:#000}
 }
 
@@ -248,7 +255,7 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .shots figure{margin:0}
 .shots a{display:block}
 .shots img{
-  width:100%;height:70px;object-fit:cover;object-position:50% 26%;
+  width:100%;height:58px;object-fit:cover;object-position:50% 26%;
   display:block;
   border:1px solid var(--line);border-radius:8px;
   background:var(--paper);
@@ -302,7 +309,10 @@ img.s-dark{display:none}
   #cv h4{margin:11px 0 5px}
   #cv .item{margin-bottom:5px}
   /* the PDF carries the detail; on screen this is an index */
-  #cv .item:not(.skills-card) p{display:none}
+  #cv .item:not(.skills-card) p{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip-path:inset(50%);white-space:nowrap;
+  }
   #cv .item{padding:8px 12px}
   #cv .item-head{margin-bottom:0}
   #cv .item h3{font-size:14px}
@@ -311,15 +321,18 @@ img.s-dark{display:none}
 
 @media (min-width:721px){
   #marketing:not([hidden]){display:block}
-  #marketing .flow{columns:2;column-gap:14px}
-  #marketing .flow>.item{break-inside:avoid;margin-bottom:10px}
+  #marketing .flow{columns:2;column-gap:14px;orphans:1;widows:1}
+  #marketing .flow>.item{break-inside:avoid;margin:0 0 10px}
+  #marketing .flow>.item:first-child{column-span:all}
   #marketing .item-head{flex-wrap:nowrap}
+  /* the client wall has the full width to itself here */
+  #marketing .clients{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
   #marketing .item{margin-bottom:6px;padding:10px 13px}
   #marketing .item p{font-size:13px;line-height:1.4;margin-bottom:5px}
 }
 
 @media (min-width:721px) and (max-height:820px){
-  .shots img{height:66px}
+  .shots img{height:52px}
   .graph{margin-top:8px}
   #cv .item{margin-bottom:4px;padding:7px 11px}
   #cv h4{margin:9px 0 4px}
