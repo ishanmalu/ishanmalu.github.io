@@ -6,7 +6,7 @@ Personal site. Static HTML, CSS and a little JS. No framework, no build step.
     lang.js           Finnish strings
     app.js            section switching + language toggle
     styles.css
-    update-graph.py   regenerates graph.svg from GitHub's contribution calendar
+    update-graph.py   regenerates graph-{light,dark}.svg from GitHub's calendar
 
 Run it locally with any static server:
 

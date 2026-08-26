@@ -10,13 +10,20 @@
   --blob-alpha:.6;
 }
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-theme="light"]){
     --ink:#ececea; --dim:#8d8d89; --line:#2a2a28;
     --acc:#ececea; --paper:#0d0d0c;
     --card:rgba(23,23,22,.6);
     --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
     --blob-alpha:.85;
   }
+}
+:root[data-theme="dark"]{
+    --ink:#ececea; --dim:#8d8d89; --line:#2a2a28;
+    --acc:#ececea; --paper:#0d0d0c;
+    --card:rgba(23,23,22,.6);
+    --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
+    --blob-alpha:.85;
 }
 
 *{box-sizing:border-box}
@@ -240,13 +247,37 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   font:400 10.5px/1 ui-monospace,monospace;letter-spacing:.08em;
   text-transform:uppercase;color:var(--dim);margin-top:6px;text-align:center;
 }
-.shots .s-dark{display:none}
+.s-dark{display:none}
 @media (prefers-color-scheme: dark){
-  .shots .s-light{display:none}
-  .shots .s-dark{display:block}
+  :root:not([data-theme="light"]) .s-light{display:none}
+  :root:not([data-theme="light"]) .s-dark{display:block}
 }
+:root[data-theme="dark"] .s-light{display:none}
+:root[data-theme="dark"] .s-dark{display:block}
+:root[data-theme="light"] .s-light{display:block}
+:root[data-theme="light"] .s-dark{display:none}
 @media (max-width:720px){
   .shots{grid-template-columns:repeat(3,1fr);gap:7px}
   .shots img{height:112px}
   .shots figcaption{font-size:9.5px}
 }
+
+/* theme toggle, sits with the tags */
+.theme-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid var(--line);border-radius:4px;
+  background:none;cursor:pointer;color:var(--dim);
+  font:400 11px/1 ui-monospace,monospace;padding:4px 8px;
+  transition:color .15s,border-color .15s;
+}
+.theme-btn:hover{color:var(--ink);border-color:var(--ink)}
+.theme-btn svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.6}
+.theme-btn .i-dark{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-btn .i-light{display:none}
+  :root:not([data-theme="light"]) .theme-btn .i-dark{display:inline}
+}
+:root[data-theme="dark"] .theme-btn .i-light{display:none}
+:root[data-theme="dark"] .theme-btn .i-dark{display:inline}
+:root[data-theme="light"] .theme-btn .i-light{display:inline}
+:root[data-theme="light"] .theme-btn .i-dark{display:none}

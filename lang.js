@@ -11,6 +11,7 @@ window.FI = {
   "nav.marketing": "Markkinointi",
   "nav.company": "Yritys",
 
+  "theme.label": "Teema",
   "shot.tools": "Työkalut",
   "shot.system": "Järjestelmä",
   "shot.screen": "Näyttö",

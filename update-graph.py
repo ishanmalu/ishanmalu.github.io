@@ -50,19 +50,20 @@ for date, level in days:
 w = (max((d - origin).days // 7 for d, _ in days) + 1) * (CELL + GAP) - GAP
 h = 7 * (CELL + GAP) - GAP
 
-svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="GitHub contributions for {USER}">
-<style>
-.l0{{fill:#e4e4e1}} .l1{{fill:#b7dcae}} .l2{{fill:#71bd63}} .l3{{fill:#41924a}} .l4{{fill:#256b33}}
-@media (prefers-color-scheme: dark){{
-.l0{{fill:#1e1e1d}} .l1{{fill:#1f4a2c}} .l2{{fill:#2f6b2c}} .l3{{fill:#4f9c46}} .l4{{fill:#8fbf7a}}
-}}
-</style>
-{"".join(cells)}
-</svg>'''
+PALETTES = {
+    "light": ("#e4e4e1", "#b7dcae", "#71bd63", "#41924a", "#256b33"),
+    "dark":  ("#1e1e1d", "#1f4a2c", "#2f6b2c", "#4f9c46", "#8fbf7a"),
+}
 
-with open("graph.svg", "w") as f:
-    f.write(svg)
+# two files rather than a media query, so the page's theme toggle drives them
+for mode, p in PALETTES.items():
+    style = " ".join(f".l{i}{{fill:{c}}}" for i, c in enumerate(p))
+    svg = (f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '''
+           f'''width="{w}" height="{h}" role="img" aria-label="GitHub contributions for {USER}">'''
+           f"<style>{style}</style>{''.join(cells)}</svg>")
+    with open(f"graph-{mode}.svg", "w") as f:
+        f.write(svg)
 
 active = sum(1 for _, l in days if l)
-print(f"graph.svg written — last {MONTHS} months: {len(days)} days, "
+print(f"graph-light.svg + graph-dark.svg written — last {MONTHS} months: {len(days)} days, "
       f"{active} with contributions, {first} to {days[-1][0]}")

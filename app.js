@@ -42,3 +42,23 @@ buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)))
 let saved = null;
 try { saved = localStorage.getItem('lang'); } catch {}
 setLang(saved || (navigator.language.startsWith('fi') ? 'fi' : 'en'));
+
+// Theme. Follows the OS until the reader picks one, then that sticks.
+const root = document.documentElement;
+let theme = null;
+try { theme = localStorage.getItem('theme'); } catch {}
+if (theme) root.dataset.theme = theme;
+
+function currentlyDark() {
+  return root.dataset.theme
+    ? root.dataset.theme === 'dark'
+    : matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+document.querySelectorAll('[data-theme-toggle]').forEach(b => {
+  b.addEventListener('click', () => {
+    const next = currentlyDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch {}
+  });
+});
