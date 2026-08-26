@@ -42,10 +42,16 @@
       <a href="https://www.linkedin.com/in/ishanmalu/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
     </nav>
 
-    <div class="langs">
-      <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
-      <span aria-hidden="true">/</span>
-      <button type="button" data-lang="fi" lang="fi" aria-label="Suomi" aria-pressed="false">FI</button>
+    <div class="controls">
+      <div class="langs">
+        <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang="fi" lang="fi" aria-label="Suomi" aria-pressed="false">FI</button>
+      </div>
+      <button type="button" class="theme-btn" data-theme-toggle aria-label="Switch between light and dark">
+        <svg viewBox="0 0 24 24" class="i-light" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        <svg viewBox="0 0 24 24" class="i-dark" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
+      </button>
     </div>
   </header>
 
@@ -73,13 +79,7 @@
         </div>
         <p data-t="code.perch.1">A native macOS menu bar utility bundling window tiling, an Alt-Tab window switcher, clipboard history, system monitoring, disk and screen cleaning, and per-display brightness &mdash; the things I kept installing six separate apps for.</p>
         <p data-t="code.perch.2">Written in Swift and built without Xcode: SwiftPM, <code>lipo</code> for a universal binary, and self-tests that live inside the shipped binary. Signed, open source, with a documentation site.</p>
-        <p class="tags"><span>Swift</span><span>SwiftUI</span><span>SwiftPM</span><span>macOS</span><span>MIT</span>
-          <button type="button" class="theme-btn" data-theme-toggle aria-label="Switch between light and dark">
-            <svg viewBox="0 0 24 24" class="i-light" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
-            <svg viewBox="0 0 24 24" class="i-dark" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
-            <span data-t="theme.label">Theme</span>
-          </button>
-        </p>
+        <p class="tags"><span>Swift</span><span>SwiftUI</span><span>SwiftPM</span><span>macOS</span><span>MIT</span></p>
 
         <div class="shots">
           <figure>
@@ -192,21 +192,11 @@
       </article>
 
       <h4 data-t="cv.skills">Skills</h4>
-      <article class="item">
-        <div class="item-head"><h3 data-t="sk.build.h">Building</h3></div>
-        <p data-t="sk.build.p">TypeScript, React, HTML/CSS and SQL day to day; Python for scripting and data work; some Swift.</p>
-      </article>
-      <article class="item">
-        <div class="item-head"><h3 data-t="sk.ai.h">AI-assisted development</h3></div>
-        <p data-t="sk.ai.p">I work primarily with AI coding tools to design, build, and ship production features &mdash; and to review my own work.</p>
-      </article>
-      <article class="item">
-        <div class="item-head"><h3 data-t="sk.plat.h">Platforms &amp; tools</h3></div>
-        <p data-t="sk.plat.p">Supabase (PostgreSQL), Cloudflare Pages, Vercel, Stripe Connect, Git and GitHub, Node.js, PostHog analytics.</p>
-      </article>
-      <article class="item">
-        <div class="item-head"><h3 data-t="sk.biz.h">Business &amp; creative</h3></div>
-        <p data-t="sk.biz.p">B2B SaaS sales and onboarding, pricing, growth marketing, short-form content, Premiere Pro, Photoshop, Illustrator, Canva.</p>
+      <article class="item skills-card">
+        <p><span data-t="sk.build.h">Building</span> <span data-t="sk.build.p">TypeScript, React, HTML/CSS and SQL day to day; Python for scripting and data work; some Swift.</span></p>
+        <p><span data-t="sk.ai.h">AI-assisted development</span> <span data-t="sk.ai.p">I work primarily with AI coding tools to design, build, and ship production features &mdash; and to review my own work.</span></p>
+        <p><span data-t="sk.plat.h">Platforms &amp; tools</span> <span data-t="sk.plat.p">Supabase (PostgreSQL), Cloudflare Pages, Vercel, Stripe Connect, Git and GitHub, Node.js, PostHog analytics.</span></p>
+        <p><span data-t="sk.biz.h">Business &amp; creative</span> <span data-t="sk.biz.p">B2B SaaS sales and onboarding, pricing, growth marketing, short-form content, Premiere Pro, Photoshop, Illustrator, Canva.</span></p>
       </article>
 
       <h4 data-t="cv.certs">Certifications</h4>
