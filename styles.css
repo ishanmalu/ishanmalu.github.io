@@ -223,3 +223,25 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .item-head{gap:4px 10px}
   .when{width:100%;margin-left:0;order:1}
 }
+
+/* screenshots: one per theme, so the shot matches the page */
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.shots figure{margin:0}
+.shots img{
+  width:100%;height:auto;display:block;
+  border:1px solid var(--line);border-radius:8px;
+  background:var(--paper);
+}
+.shots figcaption{
+  font:400 10.5px/1 ui-monospace,monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--dim);margin-top:6px;text-align:center;
+}
+.s-dark{display:none}
+@media (prefers-color-scheme: dark){
+  .s-light{display:none}
+  .s-dark{display:block}
+}
+@media (max-width:720px){
+  .shots{grid-template-columns:repeat(3,1fr);gap:7px}
+  .shots figcaption{font-size:9.5px}
+}

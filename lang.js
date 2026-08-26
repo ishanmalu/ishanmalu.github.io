@@ -11,6 +11,9 @@ window.FI = {
   "nav.marketing": "Markkinointi",
   "nav.company": "Yritys",
 
+  "shot.tools": "Työkalut",
+  "shot.system": "Järjestelmä",
+  "shot.screen": "Näyttö",
   "graph.alt": "GitHub-kontribuutiokaavio käyttäjälle ishanmalu",
   "graph.label": "Kontribuutiot, viimeiset 6 kuukautta",
   "tag.private": "yksityinen repo",
