@@ -6,7 +6,7 @@ Personal site. Static HTML, CSS and a little JS. No framework, no build step.
     lang.js           Finnish strings
     app.js            section switching + language toggle
     styles.css
-    update-graph.py   regenerates graph-{light,dark}.svg from GitHub's calendar
+    update-graph.py   writes contributions.json from GitHub's calendar
 
 Run it locally with any static server:
 
@@ -14,6 +14,6 @@ Run it locally with any static server:
 
 Refresh the contribution graph:
 
-    python3 update-graph.py ishanmalu 6
+    python3 update-graph.py ishanmalu 12
 
 A GitHub Action does that weekly and commits the result.

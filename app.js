@@ -106,7 +106,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
 
   const DAY = 86400000;
   let days = [];
-  let months = 12;
+  let months = 6;
   let picked = null;
 
   const iso = d => d.toISOString().slice(0, 10);
