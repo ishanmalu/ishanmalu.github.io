@@ -11,8 +11,7 @@ window.FI = {
   "nav.marketing": "Markkinointi",
   "nav.company": "Yritys",
 
-  "graph.alt": "GitHub-kontribuutiokaavio käyttäjälle ishanmalu",
-  "graph.label": "Kontribuutiot, viimeiset 6 kuukautta",
+  "graph.label": "Kontribuutiot",
   "tag.private": "yksityinen repo",
   "tag.trial": "14 päivää ilmaiseksi",
 

@@ -9,6 +9,7 @@
   --edge:rgba(255,255,255,.75);
   --shadow:0 1px 2px rgba(0,0,0,.035), 0 10px 28px rgba(0,0,0,.055);
   --g1:#d9d9d6; --g2:#e4e0da; --g3:#d3d6d9; --g4:#e0dadc;
+  --gl0:#e4e4e1; --gl1:#b7dcae; --gl2:#71bd63; --gl3:#41924a; --gl4:#256b33;
   --blob-alpha:.6;
 }
 @media (prefers-color-scheme: dark){
@@ -19,6 +20,7 @@
     --edge:rgba(255,255,255,.07);
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
     --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
+    --gl0:#1e1e1d; --gl1:#1f4a2c; --gl2:#2f6b2c; --gl3:#4f9c46; --gl4:#8fbf7a;
     --blob-alpha:.85;
   }
 }
@@ -29,6 +31,7 @@
     --edge:rgba(255,255,255,.07);
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
     --g1:#1e1e1d; --g2:#26241f; --g3:#1b1e21; --g4:#241d20;
+    --gl0:#1e1e1d; --gl1:#1f4a2c; --gl2:#2f6b2c; --gl3:#4f9c46; --gl4:#8fbf7a;
     --blob-alpha:.85;
 }
 
@@ -72,9 +75,9 @@ body{
 
 /* layout */
 .wrap{
-  max-width:960px;margin:0 auto;padding:6vh 28px 5vh;
+  max-width:1100px;margin:0 auto;padding:6vh 28px 5vh;
   height:100dvh;
-  display:grid;grid-template-columns:180px 1fr;gap:48px;align-items:start;
+  display:grid;grid-template-columns:180px 1fr auto;gap:48px;align-items:start;
 }
 
 .rail{align-self:start}
@@ -154,17 +157,58 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .tags .muted{opacity:.65;font-style:italic}
 
 /* contribution graph */
-.graph{margin-top:8px;padding-bottom:0}
-.graph-label{
-  font:400 11.5px/1 ui-monospace,monospace;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--dim);margin:0 0 7px;
+/* contributions rail — the calendar runs down the page rather than across,
+   because a column is the shape a narrow rail has to spare */
+.graph{
+  align-self:start;width:104px;
+  height:calc(100dvh - 12vh);display:flex;flex-direction:column;
 }
-.graph img{width:100%;max-width:340px;height:auto;display:block;border-radius:6px}
+.graph-label{
+  flex:none;font:400 11.5px/1 ui-monospace,monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--dim);margin:0 0 9px;
+}
+.graph-range{flex:none;display:flex;gap:4px;margin-bottom:10px}
+.graph-range button{
+  flex:1;padding:3px 0;border:1px solid var(--line);border-radius:5px;
+  background:none;color:var(--dim);cursor:pointer;
+  font:400 10.5px/1 ui-monospace,monospace;
+  transition:color .15s ease,border-color .15s ease;
+}
+.graph-range button:hover{color:var(--ink)}
+.graph-range button.on{color:var(--ink);border-color:var(--ink)}
+/* seven columns, one per weekday, filling downwards a week at a time */
+.graph-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:3px;
+  overflow-y:auto;overflow-x:hidden;padding-right:2px;min-height:0;
+}
+.graph-grid i{
+  display:block;aspect-ratio:1;border-radius:2px;background:var(--gl0);
+  cursor:pointer;
+}
+.graph-grid i.l1{background:var(--gl1)}
+.graph-grid i.l2{background:var(--gl2)}
+.graph-grid i.l3{background:var(--gl3)}
+.graph-grid i.l4{background:var(--gl4)}
+.graph-grid i.pick{outline:1.5px solid var(--ink);outline-offset:1px}
+.graph-grid i.pad{background:none;cursor:default}
+.graph-read{
+  /* fixed slot below the grid: reserved so naming a day never shifts the
+     column, and flex:none so the scrolling grid cannot squeeze it out */
+  flex:none;margin:10px 0 0;height:62px;overflow:hidden;
+  font:400 11px/1.35 ui-monospace,monospace;color:var(--dim);
+}
 
 /* mobile */
 @media (max-width:720px){
   html,body{height:auto;overflow:visible}
   .wrap{grid-template-columns:1fr;gap:18px;padding:26px 20px 56px;height:auto}
+  /* the rail becomes an ordinary block: no viewport-height box, so the
+     calendar flows with the page instead of scrolling inside itself */
+  /* narrow on purpose: stretched to the full column the cells become
+     40px blocks and a year runs past 2000px */
+  .graph{width:100%;max-width:168px;height:auto;max-height:none}
+  .graph-grid{overflow:visible}
+  .graph-read{height:auto;min-height:34px}
   .pane{height:auto;overflow:visible;padding-right:0;margin-right:0}
   .name{font-size:23px;line-height:1.1}
   .tag{margin:5px 0 13px;font-size:12.5px}

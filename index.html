@@ -107,12 +107,6 @@
         <p class="tags"><span>Python</span><span>Whisper</span><span>Flask</span><span>yt-dlp</span><span>MIT</span></p>
       </article>
 
-      <div class="graph">
-        <p class="graph-label" data-t="graph.label">Contributions, last 6 months</p>
-        <img src="graph-light.svg?v=16" class="s-light" width="375" height="95" data-alt="graph.alt" alt="GitHub contribution graph for ishanmalu" loading="lazy">
-        <img src="graph-dark.svg?v=16"  class="s-dark"  width="375" height="95" data-alt="graph.alt" alt="GitHub contribution graph for ishanmalu" loading="lazy">
-      </div>
-    </section>
 
     <!-- ===== ABOUT ===== -->
     <section id="about" class="view" hidden aria-labelledby="h-about">
@@ -279,6 +273,19 @@
     </section>
 
   </main>
+
+  <!-- ===== CONTRIBUTIONS ===== -->
+  <aside class="graph" aria-labelledby="graph-h">
+    <p class="graph-label" id="graph-h" data-t="graph.label">Contributions</p>
+    <div class="graph-range" role="group" aria-label="Range">
+      <button type="button" data-months="3">3m</button>
+      <button type="button" data-months="6">6m</button>
+      <button type="button" data-months="12" class="on">12m</button>
+    </div>
+    <div class="graph-grid" id="graphGrid"></div>
+    <p class="graph-read" id="graphRead" aria-live="polite"></p>
+  </aside>
+
 </div>
 
 <script src="lang.js?v=16"></script>

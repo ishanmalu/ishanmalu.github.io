@@ -1,75 +1,84 @@
 #!/usr/bin/env python3
-"""Write graph.svg from a GitHub profile's contribution calendar.
+"""Write contributions.json from a GitHub profile's contribution calendar.
 
     python3 update-graph.py [username] [months]
 
-Defaults to 6 months. No API key needed.
+Defaults to 12 months, which is what the page needs to offer its 3/6/12
+ranges without refetching. No API key needed.
+
+The page used to ship two pre-rendered SVGs. Those could not be clicked and
+could not change range, so this writes the data instead and the page draws
+the grid itself.
 """
 import datetime as dt
+import json
 import re
 import subprocess
 import sys
 
 USER = sys.argv[1] if len(sys.argv) > 1 else "ishanmalu"
-MONTHS = int(sys.argv[2]) if len(sys.argv) > 2 else 6
-CELL, GAP = 11, 3  # px
+MONTHS = int(sys.argv[2]) if len(sys.argv) > 2 else 12
 
-# The endpoint only answers within one calendar year, so a window that
-# straddles New Year needs a request per year, merged.
 today = dt.date.today()
 start = today - dt.timedelta(days=round(MONTHS * 30.44))
 
+# The endpoint ignores from/to and answers with the whole calendar year, so a
+# window that straddles New Year needs one request per year.
 html = ""
 for year in range(start.year, today.year + 1):
-    frm = max(start, dt.date(year, 1, 1))
-    to = min(today, dt.date(year, 12, 31))
     url = (f"https://github.com/users/{USER}/contributions"
-           f"?from={frm.isoformat()}&to={to.isoformat()}")
+           f"?from={year}-01-01&to={year}-12-31")
     html += subprocess.run(
         ["curl", "-sSfL", "--max-time", "30", "-A", "portfolio-graph", url],
         capture_output=True, text=True, check=True,
     ).stdout
 
-days = [
-    (dt.date.fromisoformat(d), int(l))
-    for d, l in re.findall(r'data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"', html)
-]
-if not days:
-    sys.exit(f"no contribution data found for {USER} — did the page shape change?")
+# Each day is a <td> carrying the date and level. The count lives only in the
+# <tool-tip> that points back at the cell's id, so the two have to be joined.
+cells = re.findall(
+    r'<td[^>]*?id="(contribution-day-component-[\d-]+)"[^>]*?'
+    r'data-date="(\d{4}-\d{2}-\d{2})"[^>]*?data-level="(\d)"',
+    html,
+)
+if not cells:
+    # Attribute order is not guaranteed; try the other arrangement before failing.
+    cells = [
+        (m.group("id"), m.group("date"), m.group("level"))
+        for m in re.finditer(
+            r'<td(?=[^>]*id="(?P<id>contribution-day-component-[\d-]+)")'
+            r'(?=[^>]*data-date="(?P<date>\d{4}-\d{2}-\d{2})")'
+            r'(?=[^>]*data-level="(?P<level>\d)")[^>]*>',
+            html,
+        )
+    ]
+if not cells:
+    sys.exit(f"no contribution cells found for {USER} — did the page shape change?")
 
-days = sorted({d: l for d, l in days if start <= d <= today}.items())
+counts = {}
+for cell_id, text in re.findall(r'<tool-tip[^>]*for="([^"]+)"[^>]*>([^<]*)</tool-tip>', html):
+    m = re.match(r"([\d,]+) contribution", text)
+    counts[cell_id] = int(m.group(1).replace(",", "")) if m else 0
+
+days = {}
+for cell_id, date, level in cells:
+    d = dt.date.fromisoformat(date)
+    if start <= d <= today:
+        days[d] = (int(level), counts.get(cell_id, 0))
 if not days:
     sys.exit(f"no contributions in the last {MONTHS} months for {USER}")
-first = days[0][0]
-origin = first - dt.timedelta(days=(first.weekday() + 1) % 7)  # nearest Sunday
 
-cells = []
-for date, level in days:
-    col = (date - origin).days // 7
-    row = (date.weekday() + 1) % 7
-    x, y = col * (CELL + GAP), row * (CELL + GAP)
-    cells.append(
-        f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="2" '
-        f'class="l{level}"><title>{date} · level {level}</title></rect>'
-    )
-
-w = (max((d - origin).days // 7 for d, _ in days) + 1) * (CELL + GAP) - GAP
-h = 7 * (CELL + GAP) - GAP
-
-PALETTES = {
-    "light": ("#e4e4e1", "#b7dcae", "#71bd63", "#41924a", "#256b33"),
-    "dark":  ("#1e1e1d", "#1f4a2c", "#2f6b2c", "#4f9c46", "#8fbf7a"),
+ordered = sorted(days.items())
+payload = {
+    "user": USER,
+    "generated": today.isoformat(),
+    "from": ordered[0][0].isoformat(),
+    "to": ordered[-1][0].isoformat(),
+    "days": [{"d": d.isoformat(), "l": lvl, "c": cnt} for d, (lvl, cnt) in ordered],
 }
+with open("contributions.json", "w") as f:
+    json.dump(payload, f, separators=(",", ":"))
 
-# two files rather than a media query, so the page's theme toggle drives them
-for mode, p in PALETTES.items():
-    style = " ".join(f".l{i}{{fill:{c}}}" for i, c in enumerate(p))
-    svg = (f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '''
-           f'''width="{w}" height="{h}" role="img" aria-label="GitHub contributions for {USER}">'''
-           f"<style>{style}</style>{''.join(cells)}</svg>")
-    with open(f"graph-{mode}.svg", "w") as f:
-        f.write(svg)
-
-active = sum(1 for _, l in days if l)
-print(f"graph-light.svg + graph-dark.svg written — last {MONTHS} months: {len(days)} days, "
-      f"{active} with contributions, {first} to {days[-1][0]}")
+total = sum(c for _, c in days.values())
+active = sum(1 for _, c in days.values() if c)
+print(f"contributions.json written — last {MONTHS} months: {len(ordered)} days, "
+      f"{active} active, {total} contributions, {payload['from']} to {payload['to']}")

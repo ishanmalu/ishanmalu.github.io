@@ -93,3 +93,89 @@ themeButtons.forEach(b => {
 
 markTheme();
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme);
+
+/* ---- contributions ----------------------------------------------------
+   The calendar runs downwards: seven columns, one per weekday, filling a
+   week at a time. Clicking a day names it, which a static image could not
+   do — that is why the page fetches the data and draws this itself. */
+(() => {
+  const grid = document.getElementById('graphGrid');
+  const read = document.getElementById('graphRead');
+  const range = document.querySelector('.graph-range');
+  if (!grid) return;
+
+  const DAY = 86400000;
+  let days = [];
+  let months = 12;
+  let picked = null;
+
+  const iso = d => d.toISOString().slice(0, 10);
+  // Short month: the rail is ~100px wide and a long one wraps to a third line.
+  const fmt = new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+
+  function draw() {
+    grid.innerHTML = '';
+    read.textContent = '';
+    picked = null;
+    if (!days.length) return;
+
+    const last = new Date(days[days.length - 1].d + 'T00:00:00');
+    const first = new Date(last.getTime() - Math.round(months * 30.44) * DAY);
+    const shown = days.filter(x => new Date(x.d + 'T00:00:00') >= first);
+    if (!shown.length) return;
+
+    // Start the grid on the Sunday of the first shown week so weekdays line up
+    // in their own columns; the leading blanks are spacers, not days.
+    const start = new Date(shown[0].d + 'T00:00:00');
+    for (let i = 0; i < start.getDay(); i++) {
+      const pad = document.createElement('i');
+      pad.className = 'pad';
+      grid.appendChild(pad);
+    }
+
+    for (const day of shown) {
+      const cell = document.createElement('i');
+      if (day.l) cell.className = 'l' + day.l;
+      cell.dataset.d = day.d;
+      cell.dataset.c = day.c;
+      cell.tabIndex = 0;
+      const label = describe(day);
+      cell.setAttribute('role', 'button');
+      cell.setAttribute('aria-label', label);
+      cell.title = label;
+      grid.appendChild(cell);
+    }
+  }
+
+  function describe(day) {
+    const when = fmt.format(new Date(day.d + 'T00:00:00'));
+    if (!day.c) return 'No contributions on ' + when;
+    return day.c + (day.c === 1 ? ' contribution on ' : ' contributions on ') + when;
+  }
+
+  function pick(cell) {
+    if (!cell || cell.classList.contains('pad')) return;
+    if (picked) picked.classList.remove('pick');
+    picked = cell;
+    cell.classList.add('pick');
+    read.textContent = describe({ d: cell.dataset.d, c: Number(cell.dataset.c) });
+  }
+
+  grid.addEventListener('click', e => pick(e.target.closest('i')));
+  grid.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(e.target.closest('i')); }
+  });
+
+  range.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    months = Number(b.dataset.months);
+    [...range.children].forEach(x => x.classList.toggle('on', x === b));
+    draw();
+  });
+
+  fetch('contributions.json')
+    .then(r => r.ok ? r.json() : Promise.reject(new Error(r.status)))
+    .then(data => { days = data.days || []; draw(); })
+    .catch(() => { read.textContent = 'Contribution data unavailable.'; });
+})();

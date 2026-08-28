@@ -14,16 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Regenerate graph.svg
-        run: python3 update-graph.py ishanmalu 6
+      - name: Regenerate contributions.json
+        run: python3 update-graph.py ishanmalu 12
 
       - name: Commit if it changed
         run: |
-          if git diff --quiet -- graph-light.svg graph-dark.svg; then
+          if git diff --quiet -- contributions.json; then
             echo "unchanged"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Refresh contribution graph" -- graph-light.svg graph-dark.svg
+          git commit -m "Refresh contribution graph" -- contributions.json
           git push
