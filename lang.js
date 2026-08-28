@@ -21,7 +21,7 @@ window.FI = {
   "code.perch.1": "Natiivi macOS-valikkorivin työkalu, joka yhdistää ikkunoiden asettelun, Alt-Tab-ikkunanvaihtajan, leikepöytähistorian, järjestelmän seurannan, levyn ja näytön puhdistuksen sekä näyttökohtaisen kirkkaudensäädön — ne asiat joihin aiemmin asensin kuusi eri sovellusta.",
   "code.perch.2": "Kirjoitettu Swiftillä ja rakennettu ilman Xcodea: SwiftPM, <code>lipo</code> universaaliin binääriin, ja itsetestit jotka elävät julkaistun binäärin sisällä. Allekirjoitettu, avointa lähdekoodia, dokumentaatiosivuston kanssa.",
   "code.transcriber.1": "Liitä TikTok-, Reels- tai YouTube-linkki ja saat litteroinnin takaisin — koko videon tai minkä tahansa osan siitä, aikaleimoilla tai ilman. Kaikki ajetaan paikallisesti: <code>yt-dlp</code> hakee äänen, Whisper litteroi sen, eikä mitään lähetetä ulkopuolelle.",
-  "code.transcriber.2": "Python, jossa yksi yhteinen ydin palvelee sekä komentorivityökalua että pientä Flask-käyttöliittymää, joka tuo jokaisen rivin näkyviin heti kun se tunnistetaan. Toimii 1,8-kertaisella reaaliaikanopeudella M4:llä ja vie tekstin joko puhtaana tekstinä tai SRT-tekstityksinä.",
+  "code.transcriber.2": "Python, jossa yksi yhteinen ydin palvelee sekä komentorivityökalua että pientä Flask-käyttöliittymää, joka tuo jokaisen rivin näkyviin heti kun se tunnistetaan. Toimii 1,8-kertaisella reaaliaikanopeudella M4:llä ja vie tekstin joko puhtaana tekstinä tai SRT-tekstityksinä. Käytän sitä puhelimesta Tailscalen yli, joten konetta ei tarvitse avata internetiin.",
 
   "about.1": "Olen Ishan — rakennan ohjelmistoja ja myyn niitä. Tällä hetkellä se tarkoittaa Taplia, SaaS-tuotetta QR-tilaamiseen suomalaisissa ravintoloissa. Perustin sen, rakennan sen ja pyöritän sitä päivittäin.",
   "about.2": "Reittini tänne ei ollut tavanomainen. Tein kolme vuotta lyhytvideosisältöä ja hoidin brändien somea, suoritin vuoden varusmiespalveluksen kersantiksi asti, ja myin kasvotusten yhdessä Suomen suurimmista kenttämyyntitoimistoista. Sen päälle insinöörityö rakentuu: otan yhä useimmat Taplin asiakkaat käyttöön itse, ja sieltä tuotesuunnitelma tulee.",
@@ -35,7 +35,7 @@ window.FI = {
 
   "cv.skills": "Osaaminen",
   "sk.build.h": "Kehitys",
-  "sk.build.p": "TypeScript, React, HTML/CSS ja SQL päivittäin; Python skripteihin ja datan käsittelyyn; jonkin verran Swiftiä.",
+  "sk.build.p": "Python, TypeScript, React, HTML/CSS ja SQL päivittäin; jonkin verran Swiftiä.",
   "sk.ai.h": "Tekoälyavusteinen kehitys",
   "sk.ai.p": "Rakennan, suunnittelen ja julkaisen tuotanto-ominaisuuksia pääosin tekoälytyökalujen avulla ja tarkistan työn niiden kanssa.",
   "sk.plat.h": "Alustat ja työkalut",
