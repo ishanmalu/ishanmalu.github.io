@@ -179,3 +179,30 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
     .then(data => { days = data.days || []; draw(); })
     .catch(() => { read.textContent = 'Contribution data unavailable.'; });
 })();
+
+/* Screenshots open in place. The links still point at the file, so this is
+   an enhancement: without JS they open normally. */
+(() => {
+  const viewer = document.getElementById('viewer');
+  if (!viewer || !viewer.showModal) return;
+  const img = viewer.querySelector('img');
+
+  document.querySelectorAll('.shots a').forEach(a => {
+    a.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;  // let people open a new tab on purpose
+      e.preventDefault();
+      const shown = a.querySelector('img:not([hidden])');
+      img.src = currentlyDark() ? a.dataset.fullDark : a.dataset.fullLight;
+      img.alt = shown ? shown.alt : '';
+      viewer.showModal();
+    });
+  });
+
+  const close = () => viewer.close();
+  viewer.querySelector('.viewer-close').addEventListener('click', close);
+  // <dialog> closes on Escape by itself, but not in every embedded browser
+  addEventListener('keydown', e => { if (e.key === 'Escape' && viewer.open) close(); });
+  // click outside the image closes it
+  viewer.addEventListener('click', e => { if (e.target === viewer) close(); });
+  viewer.addEventListener('close', () => { img.removeAttribute('src'); });
+})();

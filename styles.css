@@ -384,3 +384,35 @@ img.s-dark{display:none}
   width:1em;height:1em;fill:currentColor;
   vertical-align:-0.14em;margin-right:.45em;
 }
+
+/* screenshot viewer */
+.viewer{
+  position:fixed;inset:0;margin:auto;   /* the reset removed the UA centring */
+  width:max-content;height:max-content;
+  border:0;padding:0;background:none;
+  max-width:min(92vw,900px);max-height:92vh;
+  overflow:visible;
+}
+.viewer::backdrop{
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.viewer img{
+  display:block;max-width:100%;max-height:88vh;width:auto;height:auto;
+  border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+  background:var(--paper);
+}
+.viewer-close{
+  position:absolute;top:-14px;right:-14px;z-index:1;
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  font:400 20px/1 ui-sans-serif,-apple-system,sans-serif;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.viewer-close:hover{border-color:var(--ink)}
+.viewer[open]{animation:viewer-in .16s ease}
+@keyframes viewer-in{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@media (max-width:720px){
+  .viewer-close{top:-12px;right:-6px}
+}
