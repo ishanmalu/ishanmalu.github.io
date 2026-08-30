@@ -192,7 +192,8 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;  // let people open a new tab on purpose
       e.preventDefault();
       const shown = a.querySelector('img:not([hidden])');
-      img.src = currentlyDark() ? a.dataset.fullDark : a.dataset.fullLight;
+      const variant = currentlyDark() ? a.dataset.fullDark : a.dataset.fullLight;
+      img.src = variant || a.getAttribute('href');   // any link works, themed or not
       img.alt = shown ? shown.alt : '';
       viewer.showModal();
     });
