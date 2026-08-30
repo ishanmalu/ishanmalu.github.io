@@ -189,7 +189,9 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 .graph-grid i.l2{background:var(--gl2)}
 .graph-grid i.l3{background:var(--gl3)}
 .graph-grid i.l4{background:var(--gl4)}
-.graph-grid i.pick{outline:1.5px solid var(--ink);outline-offset:1px}
+/* an inset ring: outline-offset drew into the 3px gap and the scroll
+   container clipped it at the edges */
+.graph-grid i.pick{box-shadow:inset 0 0 0 1.5px var(--ink);border-radius:3px}
 .graph-grid i.pad{background:none;cursor:default}
 .graph-read{
   /* fixed slot below the grid: reserved so naming a day never shifts the

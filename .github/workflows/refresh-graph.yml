@@ -2,7 +2,7 @@ name: Refresh contribution graph
 
 on:
   schedule:
-    - cron: "17 5 * * *"
+    - cron: "0 9 * * *"   # 12:00 Helsinki (EEST)
   workflow_dispatch:
 
 permissions:
