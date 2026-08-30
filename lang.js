@@ -67,6 +67,7 @@ window.FI = {
   "mk.free.h": "Freelance — sosiaalinen media ja videoeditointi",
   "mk.free.p1": "Kolme vuotta koko tuotantoketjua brändeille: käsikirjoitus, kuvaus, editointi ja lukujen lukeminen jälkikäteen. Lyhytvideoita TikTokiin, Instagram Reelsiin, YouTube Shortsiin ja LinkedIniin, sekä podcast-editointia ja tuotantoa alusta loppuun.",
   "mk.free.p2": "Ruoan, juoman, energian, maatalouden ja startupien parissa — kuusi asiakasta joiden yleisöillä ei ollut juuri mitään yhteistä, ja juuri se opetti eniten.",
+  "fcompany.by": "Precisin ostama",
   "mk.clients": "Editoinut näille",
   "mk.elisa": "Vastasin kansainvälisestä ja alueellisesta somesta (Twitter, Instagram, Twitch) livenä turnauksen aikana.",
   "mk.india": "Kuvasin ja editoin tapahtumasisältöä, mukaan lukien haastattelut Intian Suomen-suurlähettilään ja Maahanmuuttoviraston johtajan kanssa. Somemateriaalia ja verkkosivumuokkauksia.",
