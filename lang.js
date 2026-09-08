@@ -76,10 +76,11 @@ window.FI = {
   "edu.hs.h": "Ylioppilastutkinto",
   "edu.hs.p": "Vuosaaren lukio — opintoja Pythonista ja HTML:stä",
 
-  "mk.intro": "Kolme vuotta lyhytvideosisältöä ja somea ennen kuin aloin rakentaa tuotteita — käsikirjoitusta, kuvausta, editointia ja lukujen lukemista jälkikäteen.",
+  "mk.intro": "Kolme vuotta sisältöä ja somea ennen kuin aloin rakentaa tuotteita — lyhytvideoita, B2B-videoita ja käsikirjoitettuja case-videoita, ensimmäisestä rungosta lukujen lukemiseen asti.",
+  "mk.formats": "Työn muodot: lyhytvideokoukut, B2B-selittäjävideot ja tuotedemot, käsikirjoitetut asiakas-case-videot, build-in-public-sarjat, podcast-editointi ja koko tuotanto briiffistä valmiiseen leikkaukseen.",
   "mk.addnow": "Markkinointijohtaja tekoälypohjaisessa kontaktinhallintasovelluksessa. Tuotteen ominaisuuksien muuttamista sisällöksi jota ihmiset oikeasti katsovat: lyhyet koukut, build-in-public-videot ja opettavat julkaisut jotka tuovat latauksia.",
   "mk.free.h": "Freelance — sosiaalinen media ja videoeditointi",
-  "mk.free.p1": "Kolme vuotta koko tuotantoketjua brändeille: käsikirjoitus, kuvaus, editointi ja lukujen lukeminen jälkikäteen. Lyhytvideoita TikTokiin, Instagram Reelsiin, YouTube Shortsiin ja LinkedIniin, sekä podcast-editointia ja tuotantoa alusta loppuun.",
+  "mk.free.p1": "Kolme vuotta koko tuotantoketjua brändeille: käsikirjoitus, kuvaus, editointi ja lukujen lukeminen jälkikäteen. Lyhytvideoita TikTokiin, Instagram Reelsiin, YouTube Shortsiin ja LinkedIniin; B2B-selittäjävideoita ja käsikirjoitettuja asiakas-case-videoita; sekä podcast-editointia ja tuotantoa alusta loppuun.",
   "mk.free.p2": "Ruoan, juoman, energian, maatalouden ja startupien parissa — kuusi asiakasta joiden yleisöillä ei ollut juuri mitään yhteistä, ja juuri se opetti eniten.",
   "fcompany.by": "Precisin ostama",
   "mk.clients": "Editoinut näille",

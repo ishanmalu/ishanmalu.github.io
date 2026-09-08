@@ -241,7 +241,8 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .graph,.shots{display:none}
   #cv .item:not(.skills-card) p{position:static;width:auto;height:auto;
     margin:0;clip-path:none;white-space:normal;overflow:visible}
-  #cv:not([hidden]),#marketing .flow{columns:1}
+  #cv:not([hidden]){display:block !important;columns:1}
+  #marketing .flow{columns:1}
   .clients a{border-color:#ccc}
   a{text-decoration:none;color:#000}
 }
@@ -327,10 +328,13 @@ img.s-dark{display:none}
 :root[data-theme="light"] .theme-btn .i-light{display:inline}
 :root[data-theme="light"] .theme-btn .i-dark{display:none}
 
-/* CV is the longest section: two columns so it lands in one screen */
+/* CV is the longest section: a two-column grid that fills row by row,
+   so odd item counts leave at most one short cell, not a whole empty column */
 @media (min-width:721px){
-  #cv:not([hidden]){display:block;columns:2;column-gap:32px}
-  #cv h2,#cv h4,#cv .cv-dl,#cv .skills-card{column-span:all}
+  #cv:not([hidden]){
+    display:grid;grid-template-columns:1fr 1fr;column-gap:32px;
+  }
+  #cv h2,#cv h4,#cv .cv-dl,#cv .skills-card,#cv .item.lead{grid-column:1 / -1}
   #cv h4{margin:16px 0 6px}
   /* the prose lives in the PDF; hide it on screen but keep the meta lines */
   #cv .item:not(.skills-card) p:not(.when):not(.inst){
@@ -376,15 +380,12 @@ img.s-dark{display:none}
 
 @media (min-width:721px){
   #cv .item:not(.skills-card){
-    break-inside:avoid;
     background:none;border:0;border-radius:0;box-shadow:none;
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border-bottom:1px solid var(--line);
     margin:0;padding:8px 0;
   }
   #cv .item:not(.skills-card):hover{transform:none;box-shadow:none}
-  /* the current role gets the full width to itself */
-  #cv .item.lead{column-span:all}
 }
 
 /* GitHub mark, matched to the label's text size */
