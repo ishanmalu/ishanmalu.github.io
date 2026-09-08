@@ -329,25 +329,15 @@ img.s-dark{display:none}
 
 /* CV is the longest section: two columns so it lands in one screen */
 @media (min-width:721px){
-  #cv:not([hidden]){display:block;columns:2;column-gap:26px}
+  #cv:not([hidden]){display:block;columns:2;column-gap:32px}
   #cv h2,#cv h4,#cv .cv-dl,#cv .skills-card{column-span:all}
-  #cv h4{margin:11px 0 5px}
-  #cv .item{margin-bottom:5px}
-  /* the PDF carries the detail; on screen this is an index */
-  #cv .item:not(.skills-card) p{
+  #cv h4{margin:16px 0 6px}
+  /* the prose lives in the PDF; hide it on screen but keep the meta lines */
+  #cv .item:not(.skills-card) p:not(.when):not(.inst){
     position:absolute;width:1px;height:1px;padding:0;margin:-1px;
     overflow:hidden;clip-path:inset(50%);white-space:nowrap;
   }
-  /* ...except the school under each degree, which the index still needs */
-  #cv .item.edu p{
-    position:static;width:auto;height:auto;margin:1px 0 0;
-    overflow:visible;clip-path:none;white-space:normal;
-    font-size:12px;color:var(--dim);
-  }
-  #cv .item{padding:8px 12px}
-  #cv .item-head{margin-bottom:0}
   #cv .item h3{font-size:14px}
-  #cv .when{font-size:12px}
 }
 
 @media (min-width:721px){
@@ -370,20 +360,31 @@ img.s-dark{display:none}
 .skills-card p span:first-child::after{content:" — "}
 
 
-/* CV: rows, not cards. One line each, hairline between. */
+/* CV entries: title, then muted meta lines, hairline between. Not cards. */
+#cv .item-head{display:block;margin:0}
+#cv .item:not(.skills-card) h3{
+  font-size:14.5px;line-height:1.35;font-weight:600;margin:0;
+}
+#cv .inst{
+  margin:2px 0 0;font-size:13px;line-height:1.4;color:var(--dim);
+}
+#cv .when{
+  display:block;margin:2px 0 0;margin-left:0;
+  font:400 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:var(--dim);white-space:normal;
+}
+
 @media (min-width:721px){
-  #cv .item:not(.skills-card){break-inside:avoid;
+  #cv .item:not(.skills-card){
+    break-inside:avoid;
     background:none;border:0;border-radius:0;box-shadow:none;
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border-bottom:1px solid var(--line);
-    margin:0;padding:7px 2px;
+    margin:0;padding:8px 0;
   }
   #cv .item:not(.skills-card):hover{transform:none;box-shadow:none}
-  /* title and dateline share a row when they fit; the dateline drops
-     below a long title instead of crushing it into three lines */
-  #cv .item-head{margin-bottom:0;flex-wrap:wrap;align-items:baseline;gap:1px 10px}
-  #cv .item-head h3{flex:1 1 auto;min-width:58%}
-  #cv .item-head .when{margin-left:auto}
+  /* the current role gets the full width to itself */
+  #cv .item.lead{column-span:all}
 }
 
 /* GitHub mark, matched to the label's text size */
