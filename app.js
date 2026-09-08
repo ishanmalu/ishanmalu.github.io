@@ -210,7 +210,8 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
 
 /* Scroll cue. The pane scrolls inside its own box, so a fade and a chevron
    appear whenever a section runs past the fold, and clear once you reach the
-   end. Switching sections or language changes the height, hence the observer. */
+   end. Section swaps and language changes alter the height, so re-measure on
+   a short timeout (not rAF, which stalls while the tab is hidden). */
 (() => {
   const wrap = document.querySelector('.pane-wrap');
   const pane = document.querySelector('.pane');
@@ -221,11 +222,12 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
     const more = pane.scrollHeight - pane.clientHeight - pane.scrollTop > 8;
     wrap.classList.toggle('can-scroll', more);
   };
-  let raf = 0;
-  const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); };
+  let t = 0;
+  const schedule = () => { clearTimeout(t); t = setTimeout(update, 50); };
 
   pane.addEventListener('scroll', update, { passive: true });
   addEventListener('resize', schedule);
+  addEventListener('hashchange', schedule);
   new MutationObserver(schedule).observe(pane, { childList: true, subtree: true, attributes: true });
   if (cue) cue.addEventListener('click', () => {
     pane.scrollBy({ top: Math.round(pane.clientHeight * 0.85), behavior: 'smooth' });
