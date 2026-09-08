@@ -207,3 +207,28 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
   viewer.addEventListener('click', e => { if (e.target === viewer) close(); });
   viewer.addEventListener('close', () => { img.removeAttribute('src'); });
 })();
+
+/* Scroll cue. The pane scrolls inside its own box, so a fade and a chevron
+   appear whenever a section runs past the fold, and clear once you reach the
+   end. Switching sections or language changes the height, hence the observer. */
+(() => {
+  const wrap = document.querySelector('.pane-wrap');
+  const pane = document.querySelector('.pane');
+  const cue = document.querySelector('.scroll-cue');
+  if (!wrap || !pane) return;
+
+  const update = () => {
+    const more = pane.scrollHeight - pane.clientHeight - pane.scrollTop > 8;
+    wrap.classList.toggle('can-scroll', more);
+  };
+  let raf = 0;
+  const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); };
+
+  pane.addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', schedule);
+  new MutationObserver(schedule).observe(pane, { childList: true, subtree: true, attributes: true });
+  if (cue) cue.addEventListener('click', () => {
+    pane.scrollBy({ top: Math.round(pane.clientHeight * 0.85), behavior: 'smooth' });
+  });
+  update();
+})();

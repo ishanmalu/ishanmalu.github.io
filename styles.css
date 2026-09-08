@@ -106,6 +106,7 @@ body{
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
 
 /* pane */
+.pane-wrap{position:relative;min-width:0;min-height:0;height:100%}
 .pane{
   min-width:0;min-height:0;height:100%;
   overflow-y:auto;overscroll-behavior:contain;
@@ -115,6 +116,26 @@ body{
 .pane::-webkit-scrollbar{width:6px}
 .pane::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
 .pane::-webkit-scrollbar-track{background:transparent}
+
+/* scroll cue: the pane scrolls on its own, so signal when there is more below */
+.pane-wrap::after{
+  content:"";position:absolute;left:0;right:4px;bottom:0;height:76px;
+  background:linear-gradient(to bottom, transparent, var(--paper) 88%);
+  opacity:0;transition:opacity .25s ease;pointer-events:none;
+}
+.pane-wrap.can-scroll::after{opacity:1}
+.scroll-cue{
+  position:absolute;left:50%;bottom:10px;transform:translateX(-50%);
+  display:grid;place-items:center;width:34px;height:34px;padding:0;
+  border:1px solid var(--dim);border-radius:50%;
+  background:var(--paper);color:var(--ink);cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .25s ease,color .15s,border-color .15s,background .15s;
+}
+.pane-wrap.can-scroll .scroll-cue{opacity:1;pointer-events:auto;animation:cue-bob 1.9s ease-in-out infinite}
+.scroll-cue:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.scroll-cue svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes cue-bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,3px)}}
 .view h2{
   font:600 12px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;
   color:var(--dim);margin:0 0 18px;
@@ -211,7 +232,9 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .graph{width:100%;max-width:168px;height:auto;max-height:none}
   .graph-grid{overflow:visible}
   .graph-read{height:auto;min-height:34px}
+  .pane-wrap{height:auto}
   .pane{height:auto;overflow:visible;padding-right:0;margin-right:0}
+  .pane-wrap::after,.scroll-cue{display:none}
   .name{font-size:23px;line-height:1.1}
   .tag{margin:5px 0 13px;font-size:12.5px}
   .nav{flex-direction:row;flex-wrap:wrap;gap:5px 16px;font-size:14.5px}
@@ -238,7 +261,8 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
   .item p,.when,.view h2,.view h4{color:#333}
   .view{break-before:page}
   .view:first-of-type{break-before:auto}
-  .graph,.shots{display:none}
+  .graph,.shots,.scroll-cue{display:none}
+  .pane-wrap::after{display:none}
   #cv .item:not(.skills-card) p{position:static;width:auto;height:auto;
     margin:0;clip-path:none;white-space:normal;overflow:visible}
   #cv:not([hidden]){display:block !important;columns:1}

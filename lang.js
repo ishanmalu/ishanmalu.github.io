@@ -21,9 +21,8 @@ window.FI = {
   "code.transcriber.1": "Liitä TikTok-, Reels- tai YouTube-linkki ja saat litteroinnin takaisin — koko videon tai minkä tahansa osan siitä, aikaleimoilla tai ilman. Kaikki ajetaan paikallisesti: <code>yt-dlp</code> hakee äänen, Whisper litteroi sen, eikä mitään lähetetä ulkopuolelle.",
   "code.transcriber.2": "Python, jossa yksi yhteinen ydin palvelee sekä komentorivityökalua että pientä Flask-käyttöliittymää, joka tuo jokaisen rivin näkyviin heti kun se tunnistetaan. Toimii 1,8-kertaisella reaaliaikanopeudella M4:llä ja vie tekstin joko puhtaana tekstinä tai SRT-tekstityksinä. Käytän sitä puhelimesta Tailscalen yli, joten konetta ei tarvitse avata internetiin.",
 
-  "about.1": "Olen Ishan, Taplin perustaja ja toimitusjohtaja — QR-tilaamista ravintoloille, tuotannossa Suomessa ja päivittäisessä käytössä oikeilla tilauksilla. Vastaan myynnistä, kasvusta, hinnoittelusta ja tuotesuunnasta, ja rakennan ja julkaisen ohjelmiston itse.",
-  "about.2": "Reittini tänne ei ollut tavanomainen. Kolme vuotta lyhytvideosisältöä ja brändien somea, vuosi varusmiespalvelusta kersantiksi asti, ja kasvokkaista myyntiä yhdessä Suomen suurimmista kenttämyyntitoimistoista. Juuri se yhdistelmä on olennaista — otan yhä useimmat Taplin ravintolat käyttöön itse, ja sieltä tuotesuunnitelma tulee.",
-  "about.3": "Opiskelen tällä hetkellä tieto- ja viestintätekniikkaa Turun ammattikorkeakoulussa. Asun Helsingin, Vantaan ja Turun välillä.",
+  "about.1": "Olen Ishan. Perustin Taplin, QR-tilaamisen, joka on käytössä suomalaisravintoloissa joka päivä. Vastaan myynnistä ja markkinoinnista, päätän hinnoittelun ja rakennan tuotteen.",
+  "about.2": "Ennen Taplia editoin lyhytvideoita brändeille kolme vuotta, suoritin varusmiespalveluksen kersanttina ja tein ovelta ovelle -myyntiä. Hoidan yhä suurimman osan Taplin käyttöönotoista itse, ja opiskelen tieto- ja viestintätekniikkaa Turun AMK:ssa.",
 
   "lang.en": "englanti — erinomainen",
   "lang.fi": "suomi — hyvä",
