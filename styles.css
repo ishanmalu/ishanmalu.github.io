@@ -248,8 +248,6 @@ code{font:400 14px/1 ui-monospace,monospace;background:var(--line);padding:1px 5
 
 .cv-dl{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:6px}
 
-/* short viewports */
-
 /* client wall */
 .clients-label{
   /* tight: the wall sits inside a card */

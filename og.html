@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:#f6f6f4;color:#141413;position:relative;
+    font:16px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  .bg{position:absolute;inset:0;overflow:hidden;filter:blur(70px)}
+  .blob{position:absolute;width:640px;height:640px;border-radius:50%;opacity:.6}
+  .b1{background:#d9d9d6;top:-160px;left:-120px}
+  .b2{background:#e4e0da;top:120px;right:-180px}
+  .b3{background:#d3d6d9;bottom:-220px;left:160px}
+  .b4{background:#e0dadc;bottom:40px;right:80px}
+  .card{position:absolute;inset:0;padding:84px 96px;display:flex;flex-direction:column;justify-content:space-between}
+  .name{font:600 108px/1.05 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.02em}
+  .sub{margin-top:28px;font-size:40px;color:#6e6e6a;letter-spacing:.005em}
+  .foot{display:flex;justify-content:space-between;align-items:baseline;
+        font:400 26px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#6e6e6a}
+  .foot .dot{color:#141413}
+</style>
+</head>
+<body>
+  <div class="bg">
+    <span class="blob b1"></span><span class="blob b2"></span>
+    <span class="blob b3"></span><span class="blob b4"></span>
+  </div>
+  <div class="card">
+    <div>
+      <div class="name">Ishan<br>Malu</div>
+      <div class="sub">Founder of Tapli &middot; engineer</div>
+    </div>
+    <div class="foot">
+      <span>ishanmalu.github.io</span>
+      <span><span class="dot">&#9679;</span> Helsinki &middot; Vantaa &middot; Turku</span>
+    </div>
+  </div>
+</body>
+</html>

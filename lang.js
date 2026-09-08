@@ -1,6 +1,6 @@
 // FI only. EN is read straight out of index.html.
 window.FI = {
-  "role": "Insinööri &amp; Perustaja",
+  "role": "Perustaja &amp; insinööri",
   "now": "nyt",
   "freelance": "Freelancer",
   "fdf": "Puolustusvoimat",
@@ -15,7 +15,7 @@ window.FI = {
   "tag.private": "yksityinen repo",
   "tag.trial": "14 päivää ilmaiseksi",
 
-  "code.tapli.1": "QR-tilaaminen ravintoloille, tuotannossa Suomessa ja päivittäisessä käytössä oikeilla tilauksilla. Asiakas skannaa koodin pöydässä, tilaa ja maksaa puhelimellaan, ja tilaus ilmestyy keittiön näytölle välittömästi — ei sovellusta ladattavaksi eikä henkilökuntaa pöytään.",
+  "code.tapli.1": "QR-tilaaminen ravintoloille, tuotannossa Suomessa ja päivittäisessä käytössä oikeilla tilauksilla. Asiakas skannaa koodin pöydässä, tilaa ja maksaa puhelimellaan, ja tilaus ilmestyy keittiön näytölle välittömästi — ei sovellusta ladattavaksi eikä odottelua tarjoilijan katseen saamiseksi.",
   "code.tapli.2": "Rakennan ja julkaisen tuotteen itse tekoälyavusteisesti: ravintolan hallintapaneeli, asiakkaan ruokalista, pöytätilaaminen ja keittiönäyttö. TypeScriptillä ja Reactilla Supabasen ja Cloudflaren päällä, ja Stripe Connect Expressillä ravintolat saavat maksut suoraan — ALV-kuitit ja hyvitykset hoituvat automaattisesti.",
   "code.tapli.3": "Kiinnostavimmat ongelmat ovat tuontipuolella: tekoäly lukee verkkosivun osoitteen, PDF:n tai valokuvan paperimenusta ja poimii jokaisen annoksen, hinnan ja kategorian sekunneissa, merkitsee kaikki 14 EU-allergeenia ja kääntää koko menun yli 20 kielelle yhdellä klikkauksella.",
   "code.perch.1": "Natiivi macOS-valikkorivin työkalu, joka yhdistää ikkunoiden asettelun, kuvakaappaustyökalun, Alt-Tab-ikkunanvaihtajan, leikepöytähistorian, järjestelmän seurannan, levyn ja näytön puhdistuksen, valvetilaistunnot sekä näyttökohtaisen kirkkaudensäädön — ne asiat joihin aiemmin asensin kuusi eri sovellusta.",
@@ -23,8 +23,8 @@ window.FI = {
   "code.transcriber.1": "Liitä TikTok-, Reels- tai YouTube-linkki ja saat litteroinnin takaisin — koko videon tai minkä tahansa osan siitä, aikaleimoilla tai ilman. Kaikki ajetaan paikallisesti: <code>yt-dlp</code> hakee äänen, Whisper litteroi sen, eikä mitään lähetetä ulkopuolelle.",
   "code.transcriber.2": "Python, jossa yksi yhteinen ydin palvelee sekä komentorivityökalua että pientä Flask-käyttöliittymää, joka tuo jokaisen rivin näkyviin heti kun se tunnistetaan. Toimii 1,8-kertaisella reaaliaikanopeudella M4:llä ja vie tekstin joko puhtaana tekstinä tai SRT-tekstityksinä. Käytän sitä puhelimesta Tailscalen yli, joten konetta ei tarvitse avata internetiin.",
 
-  "about.1": "Olen Ishan — rakennan ohjelmistoja ja myyn niitä. Tällä hetkellä se tarkoittaa Taplia, SaaS-tuotetta QR-tilaamiseen suomalaisissa ravintoloissa. Perustin sen, rakennan sen ja pyöritän sitä päivittäin.",
-  "about.2": "Reittini tänne ei ollut tavanomainen. Tein kolme vuotta lyhytvideosisältöä ja hoidin brändien somea, suoritin vuoden varusmiespalveluksen kersantiksi asti, ja myin kasvotusten yhdessä Suomen suurimmista kenttämyyntitoimistoista. Sen päälle insinöörityö rakentuu: otan yhä useimmat Taplin asiakkaat käyttöön itse, ja sieltä tuotesuunnitelma tulee.",
+  "about.1": "Olen Ishan, Taplin perustaja ja toimitusjohtaja — QR-tilaamista ravintoloille, tuotannossa Suomessa ja päivittäisessä käytössä oikeilla tilauksilla. Vastaan myynnistä, kasvusta, hinnoittelusta ja tuotesuunnasta, ja rakennan ja julkaisen ohjelmiston itse.",
+  "about.2": "Reittini tänne ei ollut tavanomainen. Kolme vuotta lyhytvideosisältöä ja brändien somea, vuosi varusmiespalvelusta kersantiksi asti, ja kasvokkaista myyntiä yhdessä Suomen suurimmista kenttämyyntitoimistoista. Juuri se yhdistelmä on olennaista — otan yhä useimmat Taplin ravintolat käyttöön itse, ja sieltä tuotesuunnitelma tulee.",
   "about.3": "Opiskelen tällä hetkellä tieto- ja viestintätekniikkaa Turun ammattikorkeakoulussa. Asun Helsingin, Vantaan ja Turun välillä.",
 
   "lang.en": "englanti — erinomainen",
@@ -40,10 +40,14 @@ window.FI = {
   "sk.ai.p": "Rakennan, suunnittelen ja julkaisen tuotanto-ominaisuuksia pääosin tekoälytyökalujen avulla ja tarkistan työn niiden kanssa.",
   "sk.plat.h": "Alustat ja työkalut",
   "sk.plat.p": "Supabase (PostgreSQL), Cloudflare Pages, Vercel, Stripe Connect, Git ja GitHub, Node.js, PostHog-analytiikka.",
-  "sk.biz.h": "Liiketoiminta ja luova työ",
-  "sk.biz.p": "B2B SaaS -myynti ja käyttöönotto, hinnoittelu, kasvumarkkinointi, lyhytvideosisältö, Premiere Pro, Photoshop, Illustrator, Canva.",
+  "sk.sales.h": "Myynti ja kasvu",
+  "sk.sales.p": "B2B SaaS -go-to-market alusta loppuun: outbound, demot, hinnoittelu ja käyttöönotto. Jokaisen Taplin ravintolan olen klousannut ja ottanut käyttöön itse, ja tuotesuunnitelma tulee suoraan noista tapaamisista.",
+  "sk.creative.h": "Luova työ",
+  "sk.creative.p": "Lyhytvideosisältöä ja somea — kolme vuotta brändeille. Premiere Pro, Photoshop, Illustrator, Canva.",
 
   "cv.experience": "Työkokemus",
+  "cv.alongside": "Samaan aikaan",
+  "cv.earlier": "Aiemmin",
   "cv.education": "Koulutus",
   "cv.certs": "Sertifikaatit",
   "cv.tapli": "Perustin ja johdan QR-tilaus- ja digitaalisen ruokalistan alustaa, joka on käytössä suomalaisravintoloissa. Vastaan myynnistä, hinnoittelusta, markkinoinnista ja tuotesuunnasta — ja rakennan tuotteen itse TypeScriptillä ja Reactilla Supabasen ja Cloudflaren päällä.",
