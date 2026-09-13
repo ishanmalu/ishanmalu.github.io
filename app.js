@@ -1,8 +1,21 @@
 const panes = [...document.querySelectorAll('.view')];
 const links = [...document.querySelectorAll('.nav a')];
 
-function show(id) {
-  const target = panes.some(p => p.id === id) ? id : 'code';
+/* The project bar jumps to a card inside the Code pane, so a hash can now
+   name either a pane (#cv) or a project (#daisy). */
+const projbar = document.querySelector('.projbar');
+const chips = projbar ? [...projbar.querySelectorAll('a')] : [];
+const cards = chips.map(a => document.getElementById(a.hash.slice(1))).filter(Boolean);
+
+function paneFor(id) {
+  if (panes.some(p => p.id === id)) return id;
+  const el = id && document.getElementById(id);
+  const view = el && el.closest('.view');
+  return view ? view.id : 'code';
+}
+
+function show(id, moved) {
+  const target = paneFor(id);
   panes.forEach(p => { p.hidden = p.id !== target; });
   links.forEach(a => {
     const on = a.dataset.pane === target;
@@ -10,10 +23,50 @@ function show(id) {
     if (on) a.setAttribute('aria-current', 'true');
     else a.removeAttribute('aria-current');
   });
+
+  const deep = target !== id && document.getElementById(id);
+  if (deep) {
+    // the section was still hidden when the browser tried to scroll here,
+    // so the jump has to happen after it is shown
+    deep.scrollIntoView({ block: 'start', behavior: moved ? 'smooth' : 'instant' });
+  } else if (moved) {
+    // the document scrolls now, so a swap has to start the new section at the
+    // top — otherwise you land halfway down a section you have not read.
+    scrollTo({ top: 0, behavior: 'instant' });
+  }
+  markProject();
 }
 
-show(location.hash.slice(1));
-addEventListener('hashchange', () => show(location.hash.slice(1)));
+/* Which project you are looking at: the last card whose top has passed under
+   the bar. Cheap enough to run straight off the scroll event. */
+function markProject() {
+  if (!projbar || !cards.length) return;
+  const code = document.getElementById('code');
+  if (!code || code.hidden) return;
+
+  const line = projbar.getBoundingClientRect().bottom + 20;
+  let active = 0;
+  cards.forEach((c, i) => { if (c.getBoundingClientRect().top <= line) active = i; });
+  // the last card is short enough that the page can run out before its top
+  // reaches the line, so hitting the bottom always selects it
+  if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) {
+    active = cards.length - 1;
+  }
+
+  chips.forEach((a, i) => {
+    a.classList.toggle('on', i === active);
+    if (i === active) a.setAttribute('aria-current', 'true');
+    else a.removeAttribute('aria-current');
+  });
+}
+
+addEventListener('scroll', markProject, { passive: true });
+addEventListener('resize', markProject);
+// expanding a card moves every card below it
+document.addEventListener('toggle', markProject, true);
+
+show(location.hash.slice(1), false);
+addEventListener('hashchange', () => show(location.hash.slice(1), true));
 
 // Finnish CVs write dates as 8/2023, not Aug 2023.
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -109,7 +162,6 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
   let months = 6;
   let picked = null;
 
-  const iso = d => d.toISOString().slice(0, 10);
   // Short month: the rail is ~100px wide and a long one wraps to a third line.
   const fmt = new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -191,8 +243,9 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
     a.addEventListener('click', e => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;  // let people open a new tab on purpose
       e.preventDefault();
-      const shown = a.querySelector('img:not([hidden])');
-      const variant = currentlyDark() ? a.dataset.fullDark : a.dataset.fullLight;
+      const dark = currentlyDark();
+      const shown = a.querySelector(dark ? 'img.s-dark' : 'img.s-light') || a.querySelector('img');
+      const variant = dark ? a.dataset.fullDark : a.dataset.fullLight;
       img.src = variant || a.getAttribute('href');   // any link works, themed or not
       img.alt = shown ? shown.alt : '';
       viewer.showModal();
@@ -208,29 +261,3 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', markTheme)
   viewer.addEventListener('close', () => { img.removeAttribute('src'); });
 })();
 
-/* Scroll cue. The pane scrolls inside its own box, so a fade and a chevron
-   appear whenever a section runs past the fold, and clear once you reach the
-   end. Section swaps and language changes alter the height, so re-measure on
-   a short timeout (not rAF, which stalls while the tab is hidden). */
-(() => {
-  const wrap = document.querySelector('.pane-wrap');
-  const pane = document.querySelector('.pane');
-  const cue = document.querySelector('.scroll-cue');
-  if (!wrap || !pane) return;
-
-  const update = () => {
-    const more = pane.scrollHeight - pane.clientHeight - pane.scrollTop > 8;
-    wrap.classList.toggle('can-scroll', more);
-  };
-  let t = 0;
-  const schedule = () => { clearTimeout(t); t = setTimeout(update, 50); };
-
-  pane.addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', schedule);
-  addEventListener('hashchange', schedule);
-  new MutationObserver(schedule).observe(pane, { childList: true, subtree: true, attributes: true });
-  if (cue) cue.addEventListener('click', () => {
-    pane.scrollBy({ top: Math.round(pane.clientHeight * 0.85), behavior: 'smooth' });
-  });
-  update();
-})();

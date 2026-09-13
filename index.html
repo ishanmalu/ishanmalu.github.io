@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ishan Malu — Founder of Tapli</title>
+<title>Ishan Malu</title>
 <meta name="description" content="Ishan Malu — founder of Tapli and engineer. Code, CV, marketing work.">
 <link rel="canonical" href="https://ishanmalu.github.io/">
 <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)">
@@ -23,8 +23,8 @@
 {"@context":"https://schema.org","@type":"Person","name":"Ishan Malu","url":"https://ishanmalu.github.io/","jobTitle":"Founder & CEO","worksFor":{"@type":"Organization","name":"Tapli","url":"https://tapliapp.com"},"address":{"@type":"PostalAddress","addressCountry":"FI"},"sameAs":["https://github.com/ishanmalu","https://www.linkedin.com/in/ishanmalu/","https://x.com/ishanmalu"]}
 </script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='25' x='2' font-size='24' font-family='monospace'>im</text></svg>">
-<link rel="stylesheet" href="styles.css?v=42">
-<noscript><style>html,body{height:auto;overflow:visible}.wrap{height:auto}.pane{height:auto;overflow:visible}.view[hidden]{display:block !important}.view+.view{margin-top:48px}.langs{display:none}</style></noscript>
+<link rel="stylesheet" href="styles.css?v=56">
+<noscript><style>.view[hidden]{display:block !important}.view+.view{margin-top:56px}.langs{display:none}.proj .more::details-content{content-visibility:visible;block-size:auto}.proj .more>.more-body{display:block !important}.proj summary{display:none}</style></noscript>
 </head>
 <body>
 
@@ -69,32 +69,52 @@
     </div>
   </header>
 
-  <div class="pane-wrap">
-  <main class="pane" tabindex="0">
+  <main class="pane">
 
     <!-- ===== CODE ===== -->
     <section id="code" class="view" aria-labelledby="h-code">
       <h2 id="h-code" data-t="nav.code">Code</h2>
+      <p data-t="code.intro">Four things I build and ship myself. One is a company; the rest started because I wanted them on my own machine.</p>
 
-      <article class="item">
+      <nav class="projbar" aria-label="Projects">
+        <a href="#tapli">Tapli</a>
+        <a href="#perch">Perch</a>
+        <a href="#daisy">Daisy</a>
+        <a href="#transcriber">Transcriber</a>
+      </nav>
+
+      <article class="item proj" id="tapli">
         <div class="item-head">
           <h3>Tapli</h3>
+          <span class="status live" data-t="status.live">Live</span>
           <a class="src" href="https://tapliapp.com" target="_blank" rel="noopener">tapliapp.com &#8599;</a>
         </div>
-        <p data-t="code.tapli.1">QR ordering for restaurants, live in Finland with real orders going through it daily. A guest scans the code at the table, orders and pays on their phone, and the ticket hits the kitchen display instantly &mdash; no app to download, no waiting around to catch someone's eye.</p>
-        <p data-t="code.tapli.2">I build and ship it myself, AI-assisted: restaurant dashboard, customer menu, table-side ordering, and kitchen display. TypeScript and React on Supabase and Cloudflare, with Stripe Connect Express so restaurants are paid directly and VAT receipts and refunds are handled automatically.</p>
-        <p data-t="code.tapli.3">The interesting problems are on the import side: point AI at a website URL, a PDF, or a photo of a paper menu and it extracts every dish, price, and category in seconds, then tags all 14 EU allergens and translates the whole thing into 20+ languages in one click.</p>
+        <p class="lede" data-t="code.tapli.lede">QR ordering for restaurants &mdash; live in Finland, taking real orders every day.</p>
+        <details class="more">
+          <summary><span class="lbl-more" data-t="more">Read more</span><span class="lbl-less" data-t="less">Show less</span></summary>
+          <div class="more-body">
+            <p data-t="code.tapli.1">A guest scans the code at the table, orders and pays on their phone, and the ticket hits the kitchen display instantly &mdash; no app to download, no waiting around to catch someone's eye.</p>
+            <p data-t="code.tapli.2">I build and ship it myself, AI-assisted: restaurant dashboard, customer menu, table-side ordering, and kitchen display. TypeScript and React on Supabase and Cloudflare, with Stripe Connect Express so restaurants are paid directly and VAT receipts and refunds are handled automatically.</p>
+            <p data-t="code.tapli.3">The interesting problems are on the import side: point AI at a website URL, a PDF, or a photo of a paper menu and it extracts every dish, price, and category in seconds, then tags all 14 EU allergens and translates the whole thing into 20+ languages in one click.</p>
+          </div>
+        </details>
         <p class="tags"><span>TypeScript</span><span>React</span><span>Supabase</span><span>Cloudflare</span><span>Stripe Connect</span><span>SaaS</span><span class="muted" data-t="tag.private">private repo</span></p>
       </article>
 
-      <article class="item">
+      <article class="item proj" id="perch">
         <div class="item-head">
           <h3>Perch</h3>
+          <span class="status">macOS</span>
           <a class="src" href="https://github.com/ishanmalu/perch" target="_blank" rel="noopener">source &#8599;</a>
         </div>
-        <p data-t="code.perch.1">A native macOS menu bar utility bundling window tiling, a screenshot tool, an Alt-Tab switcher, clipboard history, system monitoring, disk and screen cleaning, keep-awake sessions and per-display brightness &mdash; the things I kept installing six separate apps for.</p>
-        <p data-t="code.perch.2">Written in Swift and built without Xcode: SwiftPM, <code>lipo</code> for a universal binary, and self-tests that live inside the shipped binary. It updates itself in place, refusing any build not signed by the same key as the one running.</p>
-        <p class="tags"><span>Swift</span><span>SwiftUI</span><span>SwiftPM</span><span>macOS</span><span>Homebrew</span><span>MIT</span></p>
+        <p class="lede" data-t="code.perch.lede">A menu bar app that replaced the six separate utilities I kept reinstalling on every Mac.</p>
+        <details class="more">
+          <summary><span class="lbl-more" data-t="more">Read more</span><span class="lbl-less" data-t="less">Show less</span></summary>
+          <div class="more-body">
+            <p data-t="code.perch.1">Window tiling, a screenshot tool, an Alt-Tab switcher, clipboard history, system monitoring, disk and screen cleaning, keep-awake sessions and per-display brightness &mdash; all native, all in one icon.</p>
+            <p data-t="code.perch.2">Written in Swift and built without Xcode: SwiftPM, <code>lipo</code> for a universal binary, and self-tests that live inside the shipped binary. It updates itself in place, refusing any build not signed by the same key as the one running.</p>
+          </div>
+        </details>
 
         <div class="shots">
           <a href="shots/panel-tools-dark.png" target="_blank" rel="noopener" aria-label="Open screenshot: Perch tools panel" data-full-light="shots/panel-tools-light.png" data-full-dark="shots/panel-tools-dark.png">
@@ -110,41 +130,56 @@
             <img src="shots/thumb-screen-dark.png"  class="s-dark"  alt="Perch window tiling layouts" loading="lazy" width="675" height="337">
           </a>
         </div>
+        <p class="tags"><span>Swift</span><span>SwiftUI</span><span>SwiftPM</span><span>macOS</span><span>Homebrew</span><span>MIT</span></p>
       </article>
 
-      <article class="item">
+      <article class="item proj" id="daisy">
         <div class="item-head">
           <h3>Daisy</h3>
+          <span class="status">macOS</span>
           <a class="src" href="https://ishanmalu.github.io/daisy/" target="_blank" rel="noopener">daisy &#8599;</a>
           <a class="src" href="https://github.com/ishanmalu/daisy" target="_blank" rel="noopener">source &#8599;</a>
         </div>
-        <p data-t="code.daisy.1">A file converter for Mac that comes to you: hold Shift, drag a file out of Finder, and a wheel of every format it can become appears in the middle of the screen &mdash; let go on a petal and it is converted. Images, audio, video, documents and archives, plus same-format tools: resize, crop, compress, trim, strip metadata, OCR to a searchable PDF, background removal. Everything runs on-device.</p>
-        <p data-t="code.daisy.2">Swift and AppKit, built without Xcode like Perch: SwiftPM, self-tests inside the shipped binary, ad-hoc-signed. One capability graph drives the wheel, a <code>daisy</code> command line tool, saved presets, multi-step recipes and watch folders. Most of it is native &mdash; ImageIO, PDFKit and Vision &mdash; and the handful of permissively-licensed helpers it does need are vendored in by a dylib-relocation script I wrote, so it runs with nothing on <code>PATH</code>.</p>
-        <p class="tags"><span>Swift</span><span>AppKit</span><span>SwiftPM</span><span>macOS</span><span>ffmpeg</span><span>Vision</span><span>PolyForm NC</span></p>
+        <p class="lede" data-t="code.daisy.lede">A file converter that comes to you: drag a file out of Finder and a wheel of every format it can become opens under your cursor.</p>
+        <details class="more">
+          <summary><span class="lbl-more" data-t="more">Read more</span><span class="lbl-less" data-t="less">Show less</span></summary>
+          <div class="more-body">
+            <p data-t="code.daisy.1">Hold Shift, drag, and let go on a petal &mdash; it is converted. Images, audio, video, documents and archives, plus same-format tools: resize, crop, compress, trim, strip metadata, OCR to a searchable PDF, background removal. Everything runs on-device.</p>
+            <p data-t="code.daisy.2">Swift and AppKit, built without Xcode like Perch: SwiftPM, self-tests inside the shipped binary, ad-hoc-signed. One capability graph drives the wheel, a <code>daisy</code> command line tool, saved presets, multi-step recipes and watch folders. Most of it is native &mdash; ImageIO, PDFKit and Vision &mdash; and the handful of permissively-licensed helpers it does need are vendored in by a dylib-relocation script I wrote, so it runs with nothing on <code>PATH</code>.</p>
+          </div>
+        </details>
 
-        <div class="shots">
+        <div class="shots one">
           <a href="shots/daisy-dark.png" target="_blank" rel="noopener" aria-label="Open screenshot: Daisy conversion wheel" data-full-light="shots/daisy-light.png" data-full-dark="shots/daisy-dark.png">
             <img src="shots/thumb-daisy-light.png" class="s-light" alt="Daisy: white format petals fanning out around a yellow centre holding the dropped file" loading="lazy" width="240" height="240">
             <img src="shots/thumb-daisy-dark.png"  class="s-dark"  alt="Daisy: white format petals fanning out around a yellow centre holding the dropped file" loading="lazy" width="240" height="240">
           </a>
         </div>
+        <p class="tags"><span>Swift</span><span>AppKit</span><span>SwiftPM</span><span>macOS</span><span>ffmpeg</span><span>Vision</span><span>PolyForm NC</span></p>
       </article>
 
-      <article class="item">
+      <article class="item proj" id="transcriber">
         <div class="item-head">
           <h3>Transcriber</h3>
+          <span class="status">CLI &amp; web</span>
           <a class="src" href="https://github.com/ishanmalu/Transcriber" target="_blank" rel="noopener">source &#8599;</a>
         </div>
-        <p data-t="code.transcriber.1">Paste a TikTok, Reels, or YouTube link and get the transcript back &mdash; the whole video or any slice of it, with or without timestamps. Everything runs locally: <code>yt-dlp</code> pulls the audio, Whisper transcribes it, and nothing is uploaded anywhere.</p>
-        <p data-t="code.transcriber.2">Python, with one shared core behind both a command line tool and a small Flask interface that streams each line in as it is recognised. Runs at 1.8x realtime on an M4, exports plain text or SRT, and I reach it from my phone over Tailscale rather than exposing it to the internet.</p>
-        <p class="tags"><span>Python</span><span>Whisper</span><span>Flask</span><span>yt-dlp</span><span>ffmpeg</span><span>Tailscale</span><span>MIT</span></p>
+        <p class="lede" data-t="code.transcriber.lede">Paste a TikTok, Reels, or YouTube link and get the transcript back &mdash; entirely on your own machine.</p>
+        <details class="more">
+          <summary><span class="lbl-more" data-t="more">Read more</span><span class="lbl-less" data-t="less">Show less</span></summary>
+          <div class="more-body">
+            <p data-t="code.transcriber.1">The whole video or any slice of it, with or without timestamps. <code>yt-dlp</code> pulls the audio, Whisper transcribes it, and nothing is uploaded anywhere.</p>
+            <p data-t="code.transcriber.2">Python, with one shared core behind both a command line tool and a small Flask interface that streams each line in as it is recognised. Runs at 1.8x realtime on an M4, exports plain text or SRT, and I reach it from my phone over Tailscale rather than exposing it to the internet.</p>
+          </div>
+        </details>
 
-        <div class="shots">
+        <div class="shots one">
           <a href="shots/transcriber-dark.png" target="_blank" rel="noopener" aria-label="Open screenshot: Transcriber interface" data-full-light="shots/transcriber-light.png" data-full-dark="shots/transcriber-dark.png">
             <img src="shots/thumb-transcriber-light.png" class="s-light" alt="Transcriber: paste a link, pick whole video or a time range, get a transcript or a file" loading="lazy" width="620" height="590">
             <img src="shots/thumb-transcriber-dark.png"  class="s-dark"  alt="Transcriber: paste a link, pick whole video or a time range, get a transcript or a file" loading="lazy" width="620" height="590">
           </a>
         </div>
+        <p class="tags"><span>Python</span><span>Whisper</span><span>Flask</span><span>yt-dlp</span><span>ffmpeg</span><span>Tailscale</span><span>MIT</span></p>
       </article>
     </section>
 
@@ -166,85 +201,105 @@
       </p>
 
       <h4 data-t="cv.experience">Experience</h4>
-
-      <article class="item lead">
-        <div class="item-head"><h3 data-t="cv.tapli.h">Founder &amp; CEO &mdash; Tapli</h3></div>
-        <span class="when">Helsinki &middot; May 2026 &ndash; <span data-t="now">now</span></span>
-        <p data-t="cv.tapli">Founded and run a QR ordering and digital menu platform, live in Finnish restaurants. I own sales, pricing, marketing, and product direction &mdash; and build and ship the product itself in TypeScript and React on Supabase and Cloudflare.</p>
-      </article>
+      <ul class="cv-list">
+        <li class="now">
+          <article class="item lead">
+            <div class="item-head"><h3 data-t="cv.tapli.h">Founder &amp; CEO &mdash; Tapli</h3></div>
+            <span class="when">Helsinki &middot; May 2026 &ndash; <span data-t="now">now</span></span>
+            <p data-t="cv.tapli">Founded and run a QR ordering and digital menu platform, live in Finnish restaurants. I own sales, pricing, marketing, and product direction &mdash; and build and ship the product itself in TypeScript and React on Supabase and Cloudflare.</p>
+          </article>
+        </li>
+      </ul>
 
       <h4 data-t="cv.alongside">Alongside</h4>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.clasturku.h">Sales Advisor &mdash; Clas Ohlson</h3></div>
-        <span class="when">Turku &middot; Sep 2026 &ndash; <span data-t="now">now</span></span>
-        <p data-t="cv.clas.turku">Back on the shop floor at the Turku store after moving there to study &mdash; shelving, pricing, seasonal merchandising, and customer service.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.addnow.h">Head of Marketing &amp; Social Media &mdash; AddNow</h3></div>
-        <span class="when">Helsinki &middot; Nov 2025 &ndash; <span data-t="now">now</span></span>
-        <p data-t="cv.addnow">Leading marketing and content for an AI-powered contact management app. TikTok and Reels scripting, carousels, content calendars, and creative direction.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.helena.h">Event &amp; Customer Engagement &mdash; Helena Riihitupa Oy</h3></div>
-        <span class="when">Helsinki &middot; Sep 2025 &ndash; <span data-t="now">now</span></span>
-        <p data-t="cv.helena">On-site customer engagement and event work across Helsinki, representing brands directly to consumers.</p>
-      </article>
+      <ul class="cv-list">
+        <li class="now">
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.clasturku.h">Sales Advisor &mdash; Clas Ohlson</h3></div>
+            <span class="when">Turku &middot; Sep 2026 &ndash; <span data-t="now">now</span></span>
+            <p data-t="cv.clas.turku">Back on the shop floor at the Turku store after moving there to study &mdash; shelving, pricing, seasonal merchandising, and customer service.</p>
+          </article>
+        </li>
+        <li class="now">
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.addnow.h">Head of Marketing &amp; Social Media &mdash; AddNow</h3></div>
+            <span class="when">Helsinki &middot; Nov 2025 &ndash; <span data-t="now">now</span></span>
+            <p data-t="cv.addnow">Leading marketing and content for an AI-powered contact management app. TikTok and Reels scripting, carousels, content calendars, and creative direction.</p>
+          </article>
+        </li>
+        <li class="now">
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.helena.h">Event &amp; Customer Engagement &mdash; Helena Riihitupa Oy</h3></div>
+            <span class="when">Helsinki &middot; Sep 2025 &ndash; <span data-t="now">now</span></span>
+            <p data-t="cv.helena">On-site customer engagement and event work across Helsinki, representing brands directly to consumers.</p>
+          </article>
+        </li>
+      </ul>
 
       <h4 data-t="cv.earlier">Earlier</h4>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.clas.h">Sales Advisor &mdash; Clas Ohlson</h3></div>
-        <span class="when">Vantaa &middot; Oct 2025 &ndash; Jul 2026</span>
-        <p data-t="cv.clas">Shop floor, merchandising, and order fulfilment at Finland's only Clas Ohlson e-commerce warehouse. Club Clas Ambassador, tracking and growing loyalty sign-ups.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.freelance.h">Freelance &mdash; Social Media &amp; Video Editing</h3></div>
-        <span class="when">Helsinki &middot; Aug 2023 &ndash; Jun 2026</span>
-        <p data-t="cv.freelance">Delivered short-form content end to end for brands &mdash; scripting, filming, editing, and performance analysis &mdash; across TikTok, Instagram Reels, YouTube Shorts, and LinkedIn, plus podcast editing and full production.</p>
-        <p data-t="cv.freelance.clients">Clients included Moov Kids, Birkkalan Tila, Euro Scalers, The F-Company, Studio Manu, and Ome Energy by Hartwall.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.fdf.h">Sergeant &mdash; Finnish Defence Forces</h3></div>
-        <span class="when">Upinniemi &middot; Jul 2024 &ndash; Jun 2025</span>
-        <p data-t="cv.fdf">One year of national service at Upinniemi Naval Base. NCO course, then office area officer responsible for unit documentation and administration.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.euro.h">Social Media Marketer &mdash; Euro Scalers</h3></div>
-        <span class="when">Turku &middot; Aug 2023 &ndash; Dec 2023</span>
-        <p data-t="cv.euro">Short-form video and social marketing. CapCut, Premiere Pro, Photoshop, Illustrator, Canva.</p>
-      </article>
-
-      <article class="item">
-        <div class="item-head"><h3 data-t="cv.nordic.h">Sales Consultant &mdash; Nordic Sales Crew Oy</h3></div>
-        <span class="when">Helsinki &middot; May 2022 &ndash; Sep 2022</span>
-        <p data-t="cv.nordic">Face-to-face sales at one of Finland's largest field sales agencies. Objection handling and customer-facing communication.</p>
-      </article>
+      <ul class="cv-list">
+        <li>
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.clas.h">Sales Advisor &mdash; Clas Ohlson</h3></div>
+            <span class="when">Vantaa &middot; Oct 2025 &ndash; Jul 2026</span>
+            <p data-t="cv.clas">Shop floor, merchandising, and order fulfilment at Finland's only Clas Ohlson e-commerce warehouse. Club Clas Ambassador, tracking and growing loyalty sign-ups.</p>
+          </article>
+        </li>
+        <li>
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.freelance.h">Freelance &mdash; Social Media &amp; Video Editing</h3></div>
+            <span class="when">Helsinki &middot; Aug 2023 &ndash; Jun 2026</span>
+            <p data-t="cv.freelance">Delivered short-form content end to end for brands &mdash; scripting, filming, editing, and performance analysis &mdash; across TikTok, Instagram Reels, YouTube Shorts, and LinkedIn, plus podcast editing and full production.</p>
+            <p data-t="cv.freelance.clients">Clients included Moov Kids, Birkkalan Tila, Euro Scalers, The F-Company, Studio Manu, and Ome Energy by Hartwall.</p>
+          </article>
+        </li>
+        <li>
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.fdf.h">Sergeant &mdash; Finnish Defence Forces</h3></div>
+            <span class="when">Upinniemi &middot; Jul 2024 &ndash; Jun 2025</span>
+            <p data-t="cv.fdf">One year of national service at Upinniemi Naval Base. NCO course, then office area officer responsible for unit documentation and administration.</p>
+          </article>
+        </li>
+        <li>
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.euro.h">Social Media Marketer &mdash; Euro Scalers</h3></div>
+            <span class="when">Turku &middot; Aug 2023 &ndash; Dec 2023</span>
+            <p data-t="cv.euro">Short-form video and social marketing. CapCut, Premiere Pro, Photoshop, Illustrator, Canva.</p>
+          </article>
+        </li>
+        <li>
+          <article class="item">
+            <div class="item-head"><h3 data-t="cv.nordic.h">Sales Consultant &mdash; Nordic Sales Crew Oy</h3></div>
+            <span class="when">Helsinki &middot; May 2022 &ndash; Sep 2022</span>
+            <p data-t="cv.nordic">Face-to-face sales at one of Finland's largest field sales agencies. Objection handling and customer-facing communication.</p>
+          </article>
+        </li>
+      </ul>
 
       <h4 data-t="cv.education">Education</h4>
-
-      <article class="item edu">
-        <div class="item-head"><h3 data-t="edu.turku.h">BEng, Information &amp; Communication Technology</h3></div>
-        <p class="inst" data-t="edu.turku.p">Turku University of Applied Sciences</p>
-        <span class="when">Turku &middot; 2026 &ndash; <span data-t="now">now</span></span>
-      </article>
-
-      <article class="item edu">
-        <div class="item-head"><h3 data-t="edu.tampere.h">Software Engineering, Open University route (20 ECTS)</h3></div>
-        <p class="inst" data-t="edu.tampere.p">Tampere University</p>
-        <span class="when">Tampere &middot; 2025 &ndash; 2026</span>
-      </article>
-
-      <article class="item edu">
-        <div class="item-head"><h3 data-t="edu.hs.h">Finnish Matriculation Examination</h3></div>
-        <p class="inst" data-t="edu.hs.p">Vuosaari High School &mdash; coursework in Python and HTML</p>
-        <span class="when">Helsinki &middot; 2020 &ndash; 2023</span>
-      </article>
+      <ul class="cv-list">
+        <li class="now">
+          <article class="item edu">
+            <div class="item-head"><h3 data-t="edu.turku.h">BEng, Information &amp; Communication Technology</h3></div>
+            <p class="inst" data-t="edu.turku.p">Turku University of Applied Sciences</p>
+            <span class="when">Turku &middot; 2026 &ndash; <span data-t="now">now</span></span>
+          </article>
+        </li>
+        <li>
+          <article class="item edu">
+            <div class="item-head"><h3 data-t="edu.tampere.h">Software Engineering, Open University route (20 ECTS)</h3></div>
+            <p class="inst" data-t="edu.tampere.p">Tampere University</p>
+            <span class="when">Tampere &middot; 2025 &ndash; 2026</span>
+          </article>
+        </li>
+        <li>
+          <article class="item edu">
+            <div class="item-head"><h3 data-t="edu.hs.h">Finnish Matriculation Examination</h3></div>
+            <p class="inst" data-t="edu.hs.p">Vuosaari High School &mdash; coursework in Python and HTML</p>
+            <span class="when">Helsinki &middot; 2020 &ndash; 2023</span>
+          </article>
+        </li>
+      </ul>
 
       <h4 data-t="cv.skills">Skills</h4>
       <article class="item skills-card">
@@ -256,15 +311,11 @@
       </article>
 
       <h4 data-t="cv.certs">Certifications</h4>
-      <article class="item">
-        <div class="item-head"><h3>Claude Code in Action &mdash; Anthropic</h3><span class="when">2026</span></div>
-      </article>
-      <article class="item">
-        <div class="item-head"><h3>Claude Code 101 &mdash; Anthropic</h3><span class="when">2026</span></div>
-      </article>
-      <article class="item">
-        <div class="item-head"><h3>Google Ads Measurement &mdash; Google</h3><span class="when">2024</span></div>
-      </article>
+      <ul class="certs">
+        <li>Claude Code in Action &mdash; Anthropic <span class="when">2026</span></li>
+        <li>Claude Code 101 &mdash; Anthropic <span class="when">2026</span></li>
+        <li>Google Ads Measurement &mdash; Google <span class="when">2024</span></li>
+      </ul>
     </section>
 
     <!-- ===== MARKETING ===== -->
@@ -274,7 +325,7 @@
       <p data-t="mk.formats">The work: short-form hooks, B2B explainers and product demos, scripted customer case studies, build-in-public series, podcast editing, and full production from brief to final cut.</p>
 
       <div class="flow">
-      <article class="item">
+      <article class="item wide">
         <div class="item-head"><h3 data-t="mk.free.h">Freelance &mdash; Social Media &amp; Video Editing</h3><span class="when">2023 &ndash; 2026</span></div>
         <p data-t="mk.free.p1">Three years running the whole pipeline for brands: scripting, filming, editing, and reading the numbers afterwards. Short-form for TikTok, Instagram Reels, YouTube Shorts, and LinkedIn; B2B explainers and scripted customer case studies; plus podcast editing and end-to-end production.</p>
         <p data-t="mk.free.p2">Across food, drink, energy, agriculture, and startups &mdash; six clients whose audiences had almost nothing in common, which is the part that taught me the most.</p>
@@ -335,10 +386,6 @@
     </section>
 
   </main>
-    <button class="scroll-cue" type="button" aria-label="Scroll down for more">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-    </button>
-  </div>
 
   <!-- ===== CONTRIBUTIONS ===== -->
   <aside class="graph" aria-labelledby="graph-h">
@@ -359,7 +406,7 @@
   <img alt="">
 </dialog>
 
-<script src="lang.js?v=42"></script>
-<script src="app.js?v=42"></script>
+<script src="lang.js?v=56"></script>
+<script src="app.js?v=56"></script>
 </body>
 </html>
