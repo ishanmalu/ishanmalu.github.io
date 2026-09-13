@@ -213,6 +213,16 @@ code{font:400 13.5px/1 var(--mono);background:var(--line-2);border:1px solid var
   color:var(--ink);font-size:15.5px;line-height:1.5;font-weight:500;
   margin:0 0 12px;max-width:58ch;letter-spacing:-.005em;
 }
+/* the one technically interesting thing about each project, surfaced above
+   the fold so it is readable without opening the card */
+.proj .note{
+  margin:0 0 13px;padding:2px 0 2px 12px;
+  border-left:2px solid var(--line);
+  font-size:13.5px;line-height:1.55;color:var(--dim);max-width:62ch;
+}
+.proj .note b{color:var(--ink);font-weight:600}
+.proj .note code{font-size:12.5px}
+
 .proj .tags{margin-bottom:0}
 .proj .more{margin:0 0 13px}
 .proj .more p{margin:0 0 9px}
@@ -449,19 +459,36 @@ img.s-dark{display:none}
 :root[data-theme="light"] .theme-btn .i-light{display:inline}
 :root[data-theme="light"] .theme-btn .i-dark{display:none}
 
+
+/* ===== About ===== */
+/* .view>p is (0,1,1) and would out-rank a bare class, hence the p */
+.view>p.about-lede{
+  font-size:19.5px;line-height:1.45;color:var(--ink);font-weight:500;
+  letter-spacing:-.012em;margin:0 0 18px;max-width:36ch;
+}
+#about>p{max-width:62ch}
+.about-now{margin-bottom:4px}
+.about-now>li{font-size:14.5px;line-height:1.5;color:var(--dim);padding-bottom:11px}
+.about-now>li strong{color:var(--ink);font-weight:600}
+.about-cta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;
+  margin:26px 0 0 !important;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--dim);font-size:14.5px;
+}
+
 /* ===== CV: a timeline, not a masonry of orphaned titles ===== */
-#cv .cv-list{
+.cv-list{
   list-style:none;margin:0;padding:0 0 0 17px;
   border-left:1px solid var(--line);
 }
-#cv .cv-list>li{position:relative;padding:0 0 18px}
-#cv .cv-list>li:last-child{padding-bottom:2px}
-#cv .cv-list>li::before{
+.cv-list>li{position:relative;padding:0 0 18px}
+.cv-list>li:last-child{padding-bottom:2px}
+.cv-list>li::before{
   content:"";position:absolute;left:-21px;top:7px;
   width:7px;height:7px;border-radius:50%;
   background:var(--paper);border:1.5px solid var(--line);
 }
-#cv .cv-list>li.now::before{background:var(--gl3);border-color:var(--gl3)}
+.cv-list>li.now::before{background:var(--gl3);border-color:var(--gl3)}
 #cv .item{
   background:none;border:0;border-radius:0;box-shadow:none;
   backdrop-filter:none;-webkit-backdrop-filter:none;
@@ -501,9 +528,16 @@ img.s-dark{display:none}
 
 /* ===== Marketing: a grid, so it reads left-to-right ===== */
 @media (min-width:761px){
-  #marketing .flow{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+  /* stretch, not start: align-items:start left every short card with a
+     ragged hole under it while its row-mate ran on */
+  #marketing .flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   #marketing .flow>.item{margin:0}
   #marketing .flow>.item.wide{grid-column:1 / -1}
+  /* the lead card spans both columns, so an even child count leaves the last
+     one alone on its row — let that one span too rather than sit half-empty */
+  #marketing .flow>.item:last-child:nth-child(even){grid-column:1 / -1}
+  /* three across, so the six clients fill two even rows instead of 4 + 2 */
+  #marketing .clients{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
   #marketing .item-head{flex-wrap:nowrap}
   #marketing .item p{font-size:14px;line-height:1.5}
 }
